@@ -1,0 +1,8 @@
+@media print{
+	.btn{display:none;}
+	#productDetail{display:none;}
+	.card-header{display:none;}
+	.dataTables_scrollBody{overflow:visible;max-height:100%;}
+	#recieptHeader{display:block;}
+	#submitRecieptModal{display:none;}
+}
