@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
 	var productImagesPath= "img/products/";
-	var restHost="http://localhost/bpos/rest/api/";
+	var restHost="http://localhost/-bps-/rest/api/";
 	//var restHost="http://www.bitguiders.com/bpos/rest/api/";
 	
 	var dTable = $('#dTable').DataTable( {
@@ -86,7 +86,7 @@ $(document).ready(function() {
 		
 		entries=entries+1;
 	    
-		var newRow = [entries,productName,productQuantity,totalPrice];
+		var newRow = [entries+": "+productName,productQuantity,totalPrice];
 		var newProduct = {"productId":productId,"productName":productName,"productQuantity":productQuantity,"totalPrice":totalPrice};
 		recieptDetails.recieptProducts.push(newProduct);
 		
@@ -94,8 +94,8 @@ $(document).ready(function() {
 	   // $('#dTable').DataTable().search( productName ).draw();
 	    
 		totalAmount +=totalPrice;
-	    tax=totalAmount*0.01;
-	    
+	    //tax=totalAmount*0.01;
+	    tax=0;
 	    
 	    recieptDetails.totalAmount=(totalAmount+tax);
 	    $("#totalAmount").html(recieptDetails.totalAmount);
@@ -189,11 +189,7 @@ $(document).ready(function() {
 		
 		 var url = restHost+"product.php";
 
-		/* $.post( url, {"recieptDetails":recieptDetails})
-			  .done(function( data ) {
-				  $('#productPrice').html(data.transactionId+"--");
-			  });*/
-		 
+				 
 		$.post( url, {"recieptDetails":recieptDetails},function( data ) {
 			var transactionId =data.transactionId+"";
 			  $('#transactionId').html(transactionId);
@@ -201,12 +197,17 @@ $(document).ready(function() {
 			  
 		  },'json');
 		
+		
 		  $(this).hide();
 		  $('#cancelReciept').hide();
+		  $('#printReciept').show();
+		  $('#sendEmail').show();
 	});
 	
     $('#submitReciept').hide();
     $('#cancelReciept').hide();
+    $('#printReciept').hide();
+    $('#sendEmail').hide();
 
 		
 } );

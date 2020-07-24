@@ -2,13 +2,13 @@
  <div class="col-xl-5 col-lg-7 card card-body">
 
  <div id="recieptHeader" style="display:block">
- <center>Abeera Garments</center>
- <center>www.bitguiders.com/bpos</center>
+ <div id="recieptHeader1" ><center>Abeera Garments</center></div>
+ <div id="recieptHeader2" ><center>www.bitguiders.com/bpos</center></div>
 
- <table class="cell-border" width="100%">
+ <table id="recieptHeader3" class="cell-border" width="100%">
  	<tr>
- 		<td><?php echo date('m/d/y');?></td>
- 		<td style="width:180px"><?php echo date('h:i:sa');?></td>
+ 		<td style="width:50%"><?php echo date('m/d/y');?></td>
+ 		<td><?php echo date('h:i:sa');?></td>
  	</tr>
  	<tr>
  		<td>Trans: <span id="transactionId"></span></td>
@@ -19,7 +19,7 @@
  		<td>Cashier: <?php echo (isset($_SESSION['userName'])?$_SESSION['userName']:"Guest");?></td>
  	</tr>
  </table>
-<center><div id="transactionIdBarcode"></div></center>
+<div id="recieptBarCode"><center><div id="transactionIdBarcode"></div></center></div>
 
 </div>
                        <!-- Page Wrapper -->
@@ -30,18 +30,16 @@
                                     <table class="cell-border" id="dTable" width="100%" heith="100%" cellspacing="0">
                                       <thead>
                                         <tr>
-                                          <th style="width:50px">Sr.No</th>
-                                          <th>Item</th>
-                                          <th style="width:50px">Qty</th>
-                                          <th style="width:100px">Price</th>
+                                          <th style="width:65%">Item</th>
+                                          <th style="width:10%">Qty</th>
+                                          <th style="width:25%">Price</th>
                                         </tr>
                                       </thead>
                                       <tfoot>
                                       	<tr>
-                                          <td style="width:50px"></td>
                                           <td></td>
-                                          <td style="width:50px"></td>
-                                          <td style="width:100px"></td>
+                                          <td ></td>
+                                          <td ></td>
                                         </tr>
                                       </tfoot>
                                       <tbody>
@@ -50,7 +48,7 @@
                       </div>
                       <!-- End of Page Wrapper -->
 					 <div class="row">
-                      <table class="cell-border" width="100%">
+                      <table id="recieptSummary" class="cell-border" width="100%">
                       	<tr>
                       		<td colspan="3">Entries</td>
                       		<td style="width:100px"><span id="entries">0</span></td>
@@ -60,12 +58,12 @@
                       		<td><span id="tax">0</span></td>
                       	</tr>
                      	<tr>
-                      		<td colspan="3">Total Amount</td>
+                      		<td colspan="3">Total</td>
                       		<td><span id="totalAmount">0.000000</span></td>
                       	</tr>
                      	<tr>
-                      		<td colspan="3">Cash Recieved</td>
-                      		<td><input type="text" id="cashRecieved" class="form-control small" placeholder="0.0" size="5"></td>
+                      		<td colspan="3">Cash Rcvd</td>
+                      		<td><span id="cashRecievedPreview"></span><input type="text" id="cashRecieved" class="form-control small" placeholder="0.0" size="5"></td>
                       	</tr>
                      	<tr>
                       		<td colspan="3">Balance</td>
@@ -73,7 +71,9 @@
                       	</tr>
                     	<tr>
                       		<td colspan="4">
-                      			<input type="button" id="submitReciept" class="btn btn-success" data-toggle="modal" data-target="#submitRecieptModal" value="Submit" >
+                      		    <input type="button" id="printReciept" class="btn btn-info" value="Print" >
+                      		    <input type="button" id="sendEmail" class="btn btn-success"  value="Email" data-toggle="modal" data-target="#sendEmailRecieptModal">
+                      			<input type="button" id="submitReciept" class="btn btn-success"  value="Submit" >
                       			<input type="button" id="cancelReciept" onclick="location.reload()" class="btn btn-danger" value="Cancel" >
                       		</td>
                       	</tr>
@@ -113,7 +113,7 @@
             </div>
             
  <!-- Submit Reciept Modal-->
-  <div class="modal fade" id="submitRecieptModal" tabindex="-1" role="dialog" aria-labelledby="recieptModalLabel" aria-hidden="true">
+  <div class="modal fade" id="sendEmailRecieptModal" tabindex="-1" role="dialog" aria-labelledby="recieptModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -126,8 +126,7 @@
            Email: <input type="email" id="customeEmail" class="form-control" placeholder="customer@email.com">
         </div>
         <div class="modal-footer">
-          <input type="button" id="print" class="btn btn-info" value="Print" >
-          <input type="button" id="sendEmail" class="btn btn-info" value="Email" >
+          <input type="button" id="sendEmailNow" class="btn btn-info" value="Send" >
           <button onclick="location.reload()" class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
         </div>
       </div>

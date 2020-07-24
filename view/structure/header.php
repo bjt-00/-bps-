@@ -1,5 +1,6 @@
 <?php 
 session_start();
+header('Access-Control-Allow-Origin: *');
 if(!isset($_SESSION['loginId']) && !strpos($_SERVER['REQUEST_URI'],'login.php')){
     header('location:login.php');
 }
