@@ -29,6 +29,12 @@ include 'view/structure/header.php';
                   </div>
                   <form class="user" action="rest/services/security.php" method="post" enctype="application/x-www-form-urlencoded" >
                     <div class="form-group">
+                    	<select name="companyId" class="form-control">
+                    	    <option value="C0DC">Default Company</option>
+                    		<option value="C1AG">Abeera Garments</option>
+                    	</select>
+                    </div>
+                    <div class="form-group">
                       <input type="text" name="loginId" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter login id" required="true" >
                     </div>
                     <div class="form-group">
@@ -36,18 +42,16 @@ include 'view/structure/header.php';
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember Me</label>
+                        <input type="checkbox" class="custom-control-input" id="customCheck" style="display:none">
+                        <label class="custom-control-label" for="customCheck" style="display:none">Remember Me</label>
                       </div>
                     </div>
                     <input type="submit" name="login" value="Login" class="btn btn-primary btn-user btn-block"/>
                     <hr>
                   </form>
-                  <hr>
-                  <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
+                  
+                  <div class="text-center" style="display:none">
+                    <a class="small" href="forgot-password.html">Forgot Password?</a> | 
                     <a class="small" href="register.html">Create an Account!</a>
                   </div>
                 </div>

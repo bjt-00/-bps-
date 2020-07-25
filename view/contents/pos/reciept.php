@@ -2,7 +2,7 @@
  <div class="col-xl-5 col-lg-7 card card-body">
 
  <div id="recieptHeader" style="display:block">
- <div id="recieptHeader1" ><center>Abeera Garments</center></div>
+ <div id="recieptHeader1" ><center><?php echo $companyName;?></center></div>
  <div id="recieptHeader2" ><center>www.bitguiders.com/bpos</center></div>
 
  <table id="recieptHeader3" class="cell-border" width="100%">
@@ -11,7 +11,7 @@
  		<td><?php echo date('h:i:sa');?></td>
  	</tr>
  	<tr>
- 		<td>Trans: <span id="transactionId"></span></td>
+ 		<td>Trans: <span id="transactionId">000</span></td>
  		<td>Store: 00191</td>
  	</tr>
  	<tr>

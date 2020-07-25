@@ -5,8 +5,13 @@ if(!isset($_SESSION['loginId']) && !strpos($_SERVER['REQUEST_URI'],'login.php'))
     header('location:login.php');
 }
 ?>
-<div id="sid" style="display:none"><?php echo session_id();?></div>
 
+<?php 
+  
+  $companyName = (isset($_SESSION['companyName'])?$_SESSION['companyName']:'BPOS');
+
+?>
+<div id="sid" style="display:none"><?php echo session_id();?></div>
 <head>
 
   <meta charset="utf-8">

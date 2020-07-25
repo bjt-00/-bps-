@@ -1,20 +1,26 @@
 <?php
 include 'DataAccess.php';
+include 'CompanyDAO.php';
 class SecurityDAO{
     
-    function login($loginId,$password){
+    function login($companyId,$loginId,$password){
         session_start();
         $dataaccess = new DataAccess();
         
         $loginId = $dataaccess->sqlInjectionFilter($loginId);
         $password = $dataaccess->sqlInjectionFilter($password);
        
-        $query="select * from user where user_id='".$loginId."' and password='".$password."'";
+        $companyDAO = new CompanyDAO();
+        $company = $companyDAO->getCompanyById($companyId);
+        $companyPrefix = $company->company_prefix;
+        $tableName = $companyDAO->getTableUser($companyPrefix);
+
+        $query="select * from ".$tableName." where user_id='".$loginId."' and password='".$password."'";
         $resultset = $dataaccess->getResult($query);
         
         //check if user is registered
         if($dataaccess->getSize($resultset)<=0){
-            $_SESSION['error'] = $loginId." incorrect id or password.";
+            $_SESSION[AppConstants::$ALERT_TYPE_ERROR] = $loginId." incorrect id or password.";
             return false;
         }
         
@@ -23,23 +29,28 @@ class SecurityDAO{
         
         //check if user is active
         if($user->is_active){
-        $_SESSION['loginId'] = $user->user_id;
-        $_SESSION['role'] = $user->role;
-        $_SESSION['userName']= $user->first_name." ".$user->last_name;
-        $_SESSION['success'] = "Welcome ".$_SESSION['userName'];
+        $_SESSION[AppConstants::$LOGIN_ID] = $user->user_id;
+        $_SESSION[AppConstants::$USER_ROLE] = $user->role;
+        $_SESSION[AppConstants::$USER_NAME]= $user->first_name." ".$user->last_name;
+        $_SESSION[AppConstants::$ALERT_TYPE_SUCCESS] = "Welcome ".$_SESSION['userName'];
+        $_SESSION[AppConstants::$COMPANY_PREFIX]=$companyPrefix;
+        $_SESSION[AppConstants::$COMPANY_NAME]=$company->company_name;
         return true;
         }else{
-            $_SESSION['error'] = $loginId." is locked. Please reach admin for further assistance.";
+            $_SESSION[AppConstants::$ALERT_TYPE_ERROR] = $loginId." is locked. Please reach admin for further assistance.";
             return false;
         }
     }
     
     function logout(){
         session_start();
-        $_SESSION['info'] = $_SESSION['userName']." logged out successfully.";
-        unset($_SESSION['loginId']);
-        unset($_SESSION['role']);
-        unset($_SESSION['userName']);
+        $_SESSION[AppConstants::$ALERT_TYPE_INFO] = $_SESSION['userName']." logged out successfully.";
+        unset($_SESSION[AppConstants::$LOGIN_ID]);
+        unset($_SESSION[AppConstants::$USER_ROLE]);
+        unset($_SESSION[AppConstants::$USER_NAME]);
+        unset($_SESSION[AppConstants::$COMPANY_PREFIX]);
+        unset($_SESSION[AppConstants::$COMPANY_NAME]);
     }
-}
+    
+ }
 ?>

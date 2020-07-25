@@ -1,21 +1,25 @@
 <?php
 include 'DataAccess.php';
+include 'CompanyDAO.php';
 include '../util/JSONConverter.php';
 
 class ProductDAO{
-    function search($searchText){
+    function search($searchText,$companyPrefix){
         $dataaccess = new DataAccess();
         $json = new JSONConverter();
         
         $searchText = $dataaccess->sqlInjectionFilter($searchText);
-        $query ="select * from product where product_id='".$searchText
+        
+        $companyDAO = new CompanyDAO();
+        $tableName = $companyDAO->getTableProduct($companyPrefix);
+        $query ="select * from ".$tableName." where product_id='".$searchText
         ."' or product_name like '%".$searchText."%' limit 1";
         //echo $query;
         $result = $dataaccess->getResult($query);
         return $json->jsonEncode($result);
     }
     
-    function add($recieptDetails,$loginId,$role){
+    function add($recieptDetails,$loginId,$role,$companyPrefix){
         $dataaccess = new DataAccess();
         $recieptDetails = $_POST['recieptDetails'];
         $recieptProducts = $recieptDetails['recieptProducts'];
@@ -28,23 +32,31 @@ class ProductDAO{
         $cashRecieved=($cashRecieved==''?0:$cashRecieved);
         $customerId=$dataaccess->sqlInjectionFilter($recieptDetails['customerId']);
         
-        $query="INSERT INTO sale_transaction VALUES (NULL, '".$customerId."', 'S1', '".$loginId."', '".$entries."', '".$tax."', '".$totalAmount."', '".$cashRecieved."', '".$balance."', 'PKR', 'store', CURRENT_TIMESTAMP);";
+        
+        $companyDAO = new CompanyDAO();
+        $tableName = $companyDAO->getTableSaleTransaction($companyPrefix);
+        
+        $query="INSERT INTO ".$tableName." VALUES (NULL, '".$customerId."', 'S1', '".$loginId."', '".$entries."', '".$tax."', '".$totalAmount."', '".$cashRecieved."', '".$balance."', 'PKR', 'store', CURRENT_TIMESTAMP);";
         $transactionId = $dataaccess->executeQuery($query);
-        $this->addTransactionDetails($transactionId,$recieptProducts);
+        $this->addTransactionDetails($transactionId,$recieptProducts,$companyPrefix);
         
         return $transactionId;
     }
     
-    function addTransactionDetails($transactionId,$recieptProducts){
+    function addTransactionDetails($transactionId,$recieptProducts,$companyPrefix){
         
         $dataaccess = new DataAccess();
+        $companyDAO = new CompanyDAO();
+        $tableName = $companyDAO->getTableSaleTransactionDetail($companyPrefix);
+        
         for($i=0;$i<sizeof($recieptProducts);$i++){
             $product = $recieptProducts[$i];
             
-            $productId = $product['productId'];
-            $productQuantity = $product['productQuantity'];
-            $totalPrice = $product['totalPrice'];
-            $query="INSERT INTO sale_transaction_detail VALUES (NULL, ".$transactionId.",'".$productId."', '".$productQuantity."', '".$totalPrice."');";
+            $productId = $dataaccess->sqlInjectionFilter($product['productId']);
+            $productQuantity = $dataaccess->sqlInjectionFilter($product['productQuantity']);
+            $totalPrice = $dataaccess->sqlInjectionFilter($product['totalPrice']);
+            
+            $query="INSERT INTO ".$tableName." VALUES (NULL, ".$transactionId.",'".$productId."', '".$productQuantity."', '".$totalPrice."');";
             $dataaccess->executeQuery($query);
         }
     }
