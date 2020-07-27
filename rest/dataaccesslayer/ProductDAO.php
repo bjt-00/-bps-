@@ -48,6 +48,7 @@ class ProductDAO{
         $dataaccess = new DataAccess();
         $companyDAO = new CompanyDAO();
         $tableName = $companyDAO->getTableSaleTransactionDetail($companyPrefix);
+        $productTable = $companyDAO->getTableProduct($companyPrefix);
         
         for($i=0;$i<sizeof($recieptProducts);$i++){
             $product = $recieptProducts[$i];
@@ -57,6 +58,10 @@ class ProductDAO{
             $totalPrice = $dataaccess->sqlInjectionFilter($product['totalPrice']);
             
             $query="INSERT INTO ".$tableName." VALUES (NULL, ".$transactionId.",'".$productId."', '".$productQuantity."', '".$totalPrice."');";
+            $dataaccess->executeQuery($query);
+            
+            //update stock
+            $query ="update ".$productTable." set total_in_stock=total_in_stock-".$productQuantity.", total_sold=total_sold+".$productQuantity." where product_id='".$productId."'";
             $dataaccess->executeQuery($query);
         }
     }

@@ -2,7 +2,12 @@
  <div class="col-xl-5 col-lg-7 card card-body">
 
  <div id="recieptHeader" style="display:block">
- <div id="recieptHeader1" ><center><?php echo $companyName;?></center></div>
+ <div id="recieptHeader1" >
+   <center>
+	 <img class="CompanyLogo" alt="Company Logo" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.png">
+   </center>
+ </div>
+ <div><center><span id="storeAddress"></span></center></div>
  <div id="recieptHeader2" ><center>www.bitguiders.com/bpos</center></div>
 
  <table id="recieptHeader3" class="cell-border" width="100%">
@@ -12,7 +17,7 @@
  	</tr>
  	<tr>
  		<td>Trans: <span id="transactionId">000</span></td>
- 		<td>Store: 00191</td>
+ 		<td>Store: <span id="storeId">00</span></td>
  	</tr>
  	<tr>
  		<td>Reg:011</td>

@@ -32,3 +32,6 @@
   <script src="js/datatables/jquery.dataTables.min.js"></script>
   <script src="js/datatables/dataTables.bootstrap4.min.js"></script>
   
+    <script src="js/bpos/bpos.js"></script>
+  
+  

@@ -32,6 +32,7 @@ class SecurityDAO{
         $_SESSION[AppConstants::$LOGIN_ID] = $user->user_id;
         $_SESSION[AppConstants::$USER_ROLE] = $user->role;
         $_SESSION[AppConstants::$USER_NAME]= $user->first_name." ".$user->last_name;
+        $_SESSION[AppConstants::$STORE_ID]= $user->store_id;
         $_SESSION[AppConstants::$ALERT_TYPE_SUCCESS] = "Welcome ".$_SESSION['userName'];
         $_SESSION[AppConstants::$COMPANY_PREFIX]=$companyPrefix;
         $_SESSION[AppConstants::$COMPANY_NAME]=$company->company_name;

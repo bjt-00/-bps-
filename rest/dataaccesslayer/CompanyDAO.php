@@ -36,6 +36,9 @@ class CompanyDAO{
     function getTableSaleTransactionDetail($companyPrefix){
         return $this->formatTableName($companyPrefix, AppConstants::$TABLE_SALE_TRANSACTION_DETAIL);
     }
+    function getTableStore($companyPrefix){
+        return $this->formatTableName($companyPrefix, AppConstants::$TABLE_STORE);
+    }
     
 }
 ?>

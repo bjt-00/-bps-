@@ -6,3 +6,8 @@
 	#recieptHeader{display:block;}
 	#submitRecieptModal{display:none;}
 }
+
+.CompanyLogo{
+	width:180px;
+	height:60px;
+}

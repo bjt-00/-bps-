@@ -9,9 +9,14 @@ if(!isset($_SESSION['loginId']) && !strpos($_SERVER['REQUEST_URI'],'login.php'))
 <?php 
   
   $companyName = (isset($_SESSION['companyName'])?$_SESSION['companyName']:'BPOS');
-
+  $companyPrefix = (isset($_SESSION['companyPrefix'])?$_SESSION['companyPrefix']:'default');
+  $storeId = (isset($_SESSION['storeId'])?$_SESSION['storeId']:'0');
+  
 ?>
-<div id="sid" style="display:none"><?php echo session_id();?></div>
+<span id="varSid" style="display:none"><?php echo session_id();?></span>
+<span id="varCompanyPrefix" style="display:none"><?php echo $companyPrefix;?></span>
+<span id="varStoreId" style="display:none"><?php echo $storeId;?></span>
+
 <head>
 
   <meta charset="utf-8">

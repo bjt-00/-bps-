@@ -79,6 +79,7 @@ include 'view/structure/header.php';
    <!-- Page level custom scripts -->
   <script src="js/bpos/bpos-datatable.js"></script>
   <script src="js/bpos/bpos-product-detail.js"></script>
+  <script src="js/bpos/bpos-store.js"></script>
   
 </body>
 

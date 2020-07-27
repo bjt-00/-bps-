@@ -1,10 +1,6 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
 
-	var productImagesPath= "img/products/";
-	var restHost="http://localhost/-bps-/rest/api/";
-	//var restHost="http://www.bitguiders.com/bpos/rest/api/";
-	
 	var dTable = $('#dTable').DataTable( {
 		"language": {
             "lengthMenu": "Show _MENU_",
@@ -150,8 +146,8 @@ $(document).ready(function() {
 		var searchText = $(this).val();
 		setProductDetails(0,"","","",0,"","");
 		
-		 var url = restHost+"product.php";
-			$.get(url,{sid:$("#sid").html(),search:searchText},
+		 var url = restApiPath+"product.php";
+			$.get(url,{"sid":sid,"search":searchText},
 			function(searchResult){
 				$.each(searchResult,function(i,product){
 					
@@ -187,7 +183,7 @@ $(document).ready(function() {
 		
 		setProductDetails(0,"","","",0,"","");
 		
-		 var url = restHost+"product.php";
+		 var url = restApiPath+"product.php";
 
 				 
 		$.post( url, {"recieptDetails":recieptDetails},function( data ) {
