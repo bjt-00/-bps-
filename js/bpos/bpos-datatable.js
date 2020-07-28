@@ -62,7 +62,7 @@ $(document).ready(function() {
 				$('#productName').html());
 	});//addproduct
 	
-	var recieptDetails = {"entries":0,"tax":0,"totalAmount":0,"cashRecieved":0,"balance":0,"customerId":"Guest","recieptProducts":[]};
+	//var recieptDetails = {"entries":0,"tax":0,"totalAmount":0,"cashRecieved":0,"balance":0,"customerId":"Guest","recieptProducts":[]};
 	function addProductIntoReciept(productId,productName){
 		//var productName=$("#productName").html();
 		if(productName==""){return;}
@@ -147,7 +147,7 @@ $(document).ready(function() {
 		setProductDetails(0,"","","",0,"","");
 		
 		 var url = restApiPath+"product.php";
-			$.get(url,{"sid":sid,"search":searchText},
+			$.get(url,{"sid":sid,"search":searchText,"companyPrefix":companyPrefix},
 			function(searchResult){
 				$.each(searchResult,function(i,product){
 					
@@ -179,31 +179,6 @@ $(document).ready(function() {
 
 	});
 	
-	$("#submitReciept").click(function(){
-		
-		setProductDetails(0,"","","",0,"","");
-		
-		 var url = restApiPath+"product.php";
-
-				 
-		$.post( url, {"recieptDetails":recieptDetails},function( data ) {
-			var transactionId =data.transactionId+"";
-			  $('#transactionId').html(transactionId);
-			  $("#transactionIdBarcode").html("").show().barcode(transactionId,"datamatrix");
-			  
-		  },'json');
-		
-		
-		  $(this).hide();
-		  $('#cancelReciept').hide();
-		  $('#printReciept').show();
-		  $('#sendEmail').show();
-	});
-	
-    $('#submitReciept').hide();
-    $('#cancelReciept').hide();
-    $('#printReciept').hide();
-    $('#sendEmail').hide();
 
 		
 } );

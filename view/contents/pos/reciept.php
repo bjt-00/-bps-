@@ -20,8 +20,9 @@
  		<td>Store: <span id="storeId">00</span></td>
  	</tr>
  	<tr>
- 		<td>Reg:011</td>
- 		<td>Cashier: <?php echo (isset($_SESSION['userName'])?$_SESSION['userName']:"Guest");?></td>
+ 		<td colspan="2">
+ 		 Cashier: <?php echo (isset($_SESSION['userName'])?$_SESSION['userName']:"Guest");?>
+ 		</td>
  	</tr>
  </table>
 <div id="recieptBarCode"><center><div id="transactionIdBarcode"></div></center></div>

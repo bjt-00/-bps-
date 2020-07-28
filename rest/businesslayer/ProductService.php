@@ -7,9 +7,5 @@ class ProductService
         return $productDAO->search($searchText,$companyPrefix);
     }
     
-    function add($recieptDetails,$loginId,$role,$companyPrefix){
-        $productDAO = new ProductDAO();
-        $productDAO->add($recieptDetails,$loginId,$role,$companyPrefix);
-    }
 }
 
