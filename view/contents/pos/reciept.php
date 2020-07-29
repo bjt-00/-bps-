@@ -2,13 +2,14 @@
  <div class="col-xl-5 col-lg-7 card card-body">
 
  <div id="recieptHeader" style="display:block">
- <div id="recieptHeader1" >
+ <div id="recieptHeader" >
    <center>
 	 <img class="CompanyLogo" alt="Company Logo" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.png">
    </center>
  </div>
- <div><center><span id="storeAddress"></span></center></div>
- <div id="recieptHeader2" ><center>www.bitguiders.com/bpos</center></div>
+ <div id="recieptAddress"><center><span id="storeAddress"></span></center></div>
+ <div id="recieptPhone"><center><span id="storePhone"></span></center></div>
+ <div id="recieptWeb" ><center>www.bitguiders.com/bpos</center></div>
 
  <table id="recieptHeader3" class="cell-border" width="100%">
  	<tr>

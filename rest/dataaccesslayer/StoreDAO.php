@@ -1,18 +1,19 @@
 <?php
+
 include 'DataAccess.php';
-include 'CompanyDAO.php';
 include '../util/JSONConverter.php';
 
-class StoreDAO{
+class StoreDAO {
     function search($storeText,$companyPrefix){
         $dataaccess = new DataAccess();
         $json = new JSONConverter();
         
         $storeText = $dataaccess->sqlInjectionFilter($storeText);
         
-        $companyDAO = new CompanyDAO();
-        $tableName = $companyDAO->getTableStore($companyPrefix);
-        $query ="select * from ".$tableName." where store_id=".$storeText;
+        $tableName = $dataaccess->getTableStore($companyPrefix);
+        $query ="select store_id as storeId,store_address storeAddress,store_phone storePhone,
+         is_active isActive 
+         from ".$tableName." where store_id=".$storeText;
         
         //echo $query;
         $result = $dataaccess->getResult($query);

@@ -151,16 +151,16 @@ $(document).ready(function() {
 			function(searchResult){
 				$.each(searchResult,function(i,product){
 					
-					var discount= (product.sale_price-product.purchase_price);
+					var discount= (product.salePrice-product.purchasePrice);
 					 
 					//sit product details
-					setProductDetails(product.product_id,product.product_name,product.sale_price,product.total_in_stock,discount
-							,product.total_in_stock,product.size);
+					setProductDetails(product.productId,product.productName,product.salePrice,product.totalInStock,discount
+							,product.totalInStock,product.size);
 					 
 					//add product into reciept
 					var isAutoMode=$("#autoAddMode").prop("checked");
 					if(isAutoMode){
-						addProductIntoReciept(product.product_id,product.product_name);
+						addProductIntoReciept(product.productId,product.productName);
 					}
 
 

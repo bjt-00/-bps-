@@ -1,5 +1,6 @@
 <?php
 include '../dataaccesslayer/StoreDAO.php';
+
 class StoreService
 {
     function search($searchText,$companyPrefix){

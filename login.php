@@ -29,9 +29,9 @@ include 'view/structure/header.php';
                   </div>
                   <form class="user" action="rest/services/security.php" method="post" enctype="application/x-www-form-urlencoded" >
                     <div class="form-group">
-                    	<select name="companyId" class="form-control">
-                    	    <option value="C0DC">Default Company</option>
-                    		<option value="C1AG">Abeera Garments</option>
+                    	<select name="companyPrefix" class="form-control">
+                    	    <option value="default">Default Company</option>
+                    		<option value="ag">Abeera Garments</option>
                     	</select>
                     </div>
                     <div class="form-group">

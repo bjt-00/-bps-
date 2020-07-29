@@ -1,6 +1,6 @@
 <?php
 include 'DataAccess.php';
-include 'CompanyDAO.php';
+//include 'CompanyDAO.php';
 include '../util/JSONConverter.php';
 
 class RecieptDAO{
@@ -19,8 +19,7 @@ class RecieptDAO{
         $customerId=$dataaccess->sqlInjectionFilter($recieptDetails['customerId']);
         
         
-        $companyDAO = new CompanyDAO();
-        $tableName = $companyDAO->getTableSaleTransaction($companyPrefix);
+        $tableName = $dataaccess->getTableSaleTransaction($companyPrefix);
         
         $query="INSERT INTO ".$tableName." VALUES (NULL, '".$customerId."', 'S1', '".$loginId."', '".$entries."', '".$tax."', '".$totalAmount."', '".$cashRecieved."', '".$balance."', 'PKR', 'store', CURRENT_TIMESTAMP);";
         $transactionId = $dataaccess->executeQuery($query);
@@ -32,9 +31,8 @@ class RecieptDAO{
     function addTransactionDetails($transactionId,$recieptProducts,$companyPrefix){
         
         $dataaccess = new DataAccess();
-        $companyDAO = new CompanyDAO();
-        $tableName = $companyDAO->getTableSaleTransactionDetail($companyPrefix);
-        $productTable = $companyDAO->getTableProduct($companyPrefix);
+        $tableName = $dataaccess->getTableSaleTransactionDetail($companyPrefix);
+        $productTable = $dataaccess->getTableProduct($companyPrefix);
         
         for($i=0;$i<sizeof($recieptProducts);$i++){
             $product = $recieptProducts[$i];

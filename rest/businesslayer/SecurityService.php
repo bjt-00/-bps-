@@ -1,7 +1,8 @@
 <?php
+include '../dataaccesslayer/SecurityDAO.php';
 class SecurityService{
     
-    function isAuthentic(){
+    static function isAuthentic(){
         ini_set('session.gc_maxlifetime', 3600);
         session_start();
         return true;
@@ -14,6 +15,16 @@ class SecurityService{
             return true;
         }
         return false;
+    }
+    
+    function login($companyPrefix,$loginId,$password){
+        $securityDAO = new SecurityDAO();
+        return $securityDAO->login($companyPrefix, $loginId, $password);
+    }
+    
+    function logout(){
+        $securityDAO = new SecurityDAO();
+        $securityDAO->logout();
     }
 }
 ?>

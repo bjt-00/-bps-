@@ -24,6 +24,32 @@ $(document).ready(function() {
 		  $('#sendEmail').show();
 	});
 	
+	$("#printReciept").click(function(){
+		$("#sendEmailRecieptModal").modal("hide");
+		
+		//prepare reciept for print
+		var recieptWidth = "width:275px;color:black;font-weight:bold;margin-left:2px;";
+		var recieptWidth2 = recieptWidth+"font-size:16px;";
+		recieptWidth = recieptWidth+"font-size:18px;";
+		
+		$("#recieptHeader").attr("style",recieptWidth2);
+		$("#recieptAddress").attr("style",recieptWidth2);
+		$("#recieptPhone").attr("style",recieptWidth2);
+		$("#recieptWeb").attr("style",recieptWidth2);
+		$("#recieptHeader3").attr("style",recieptWidth);
+		$("#recieptBarCode").attr("style",recieptWidth);
+		$("#dTable").attr("style",recieptWidth);
+		$("#recieptSummary").attr("style",recieptWidth);
+		
+		$("#cashRecievedPreview").attr("style","color:black;font-weight:bold;");
+		$("#cashRecieved").hide();
+		$("#cashRecievedPreview").html($("#cashRecieved").val());
+		
+		window.print();
+		location.reload();
+	});
+
+	
     $('#submitReciept').hide();
     $('#cancelReciept').hide();
     $('#printReciept').hide();

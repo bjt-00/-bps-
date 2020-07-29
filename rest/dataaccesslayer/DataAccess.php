@@ -1,8 +1,7 @@
  <?php 
-   class DataAccess{
-	
-      
-   	
+ class DataAccess{
+     
+ 
    	public $host = "localhost";
    	public $user ="root";
    	public $password  ="";
@@ -58,5 +57,30 @@
        $filteredInput= str_replace('|', "", $filteredInput);
        return $filteredInput;
    }
+   
+   function getTableUser($companyPrefix){
+       return $this->formatTableName($companyPrefix, AppConstants::$TABLE_USER);
+   }
+   function getTableProduct($companyPrefix){
+       return $this->formatTableName($companyPrefix, AppConstants::$TABLE_PRODUCT);
+   }
+   function getTableSaleTransaction($companyPrefix){
+       return $this->formatTableName($companyPrefix, AppConstants::$TABLE_SALE_TRANSACTION);
+   }
+   function getTableSaleTransactionDetail($companyPrefix){
+       return $this->formatTableName($companyPrefix, AppConstants::$TABLE_SALE_TRANSACTION_DETAIL);
+   }
+   function getTableStore($companyPrefix){
+       return $this->formatTableName($companyPrefix, AppConstants::$TABLE_STORE);
+   }
+   
+   function formatTableName($companyPrefix,$tableName){
+       if($companyPrefix==""){
+           return AppConstants::$DEFAULT_COMPANY_PREFIX."_".$tableName;
+       }else{
+           return $companyPrefix."_".$tableName;
+       }
+   }
+   
  }
- ?>
+ 

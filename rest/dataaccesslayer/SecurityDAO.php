@@ -1,19 +1,16 @@
 <?php
 include 'DataAccess.php';
-include 'CompanyDAO.php';
 class SecurityDAO{
     
-    function login($companyId,$loginId,$password){
+    function login($companyPrefix,$loginId,$password){
         session_start();
         $dataaccess = new DataAccess();
         
         $loginId = $dataaccess->sqlInjectionFilter($loginId);
         $password = $dataaccess->sqlInjectionFilter($password);
-       
-        $companyDAO = new CompanyDAO();
-        $company = $companyDAO->getCompanyById($companyId);
-        $companyPrefix = $company->company_prefix;
-        $tableName = $companyDAO->getTableUser($companyPrefix);
+        $companyPrefix = $dataaccess->sqlInjectionFilter($companyPrefix);
+        
+        $tableName = $dataaccess->getTableUser($companyPrefix);
 
         $query="select * from ".$tableName." where user_id='".$loginId."' and password='".$password."'";
         $resultset = $dataaccess->getResult($query);
@@ -35,7 +32,7 @@ class SecurityDAO{
         $_SESSION[AppConstants::$STORE_ID]= $user->store_id;
         $_SESSION[AppConstants::$ALERT_TYPE_SUCCESS] = "Welcome ".$_SESSION['userName'];
         $_SESSION[AppConstants::$COMPANY_PREFIX]=$companyPrefix;
-        $_SESSION[AppConstants::$COMPANY_NAME]=$company->company_name;
+        $_SESSION[AppConstants::$COMPANY_NAME]="Default";//$company->company_name;
         return true;
         }else{
             $_SESSION[AppConstants::$ALERT_TYPE_ERROR] = $loginId." is locked. Please reach admin for further assistance.";

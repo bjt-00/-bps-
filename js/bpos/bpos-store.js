@@ -7,9 +7,9 @@ $(document).ready(function() {
 			$.get(url,{"sid":sid,"search":storeId,"companyPrefix":companyPrefix},
 			function(searchResult){
 				$.each(searchResult,function(i,store){
-					$("#storeId").html(store.store_id);
-					$("#storeAddress").html(store.store_address);
-
+					$("#storeId").html(store.storeId);
+					$("#storeAddress").html(store.storeAddress);
+					$("#storePhone").html(store.storePhone);
 				});
 
 			},"json");

@@ -1,5 +1,4 @@
 <?php
-
 class JSONConverter{
     
     function jsonEncode($result){

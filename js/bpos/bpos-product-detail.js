@@ -37,25 +37,6 @@ $(document).ready(function() {
 		$("#searchProduct").focus();
 	});
 	
-	$("#printReciept").click(function(){
-		$("#sendEmailRecieptModal").modal("hide");
-		
-		//prepare reciept for print
-		var recieptWidth = "width:275px;color:black;font-weight:bold;margin-left:2px;";
-		$("#recieptHeader1").attr("style",recieptWidth);
-		$("#recieptHeader2").attr("style",recieptWidth);
-		$("#recieptHeader3").attr("style",recieptWidth);
-		$("#recieptBarCode").attr("style",recieptWidth);
-		$("#dTable").attr("style",recieptWidth);
-		$("#recieptSummary").attr("style",recieptWidth);
-		
-		$("#cashRecievedPreview").attr("style","color:black;font-weight:bold;");
-		$("#cashRecieved").hide();
-		$("#cashRecievedPreview").html($("#cashRecieved").val());
-		
-		window.print();
-		location.reload();
-	});
 	
 	$("#searchProduct").focus();
 	$("#addProduct").hide();
