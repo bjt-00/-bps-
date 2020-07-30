@@ -29,9 +29,7 @@ include 'view/structure/header.php';
                   </div>
                   <form class="user" action="rest/services/security.php" method="post" enctype="application/x-www-form-urlencoded" >
                     <div class="form-group">
-                    	<select name="companyPrefix" class="form-control">
-                    	    <option value="default">Default Company</option>
-                    		<option value="ag">Abeera Garments</option>
+                    	<select id="companyPrefix" name="companyPrefix" class="form-control">
                     	</select>
                     </div>
                     <div class="form-group">
@@ -65,7 +63,6 @@ include 'view/structure/header.php';
     </div>
 
   </div>
-
+<script src="js/bpos/bpos-login.js"></script>
 </body>
-
 </html>

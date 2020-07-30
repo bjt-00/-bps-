@@ -14,15 +14,15 @@
  <table id="recieptHeader3" class="cell-border" width="100%">
  	<tr>
  		<td style="width:50%"><?php echo date('m/d/y');?></td>
- 		<td><?php echo date('h:i:sa');?></td>
+ 		<td style="text-align:right;"><?php echo date('h:i:sa');?></td>
  	</tr>
  	<tr>
  		<td>Trans: <span id="transactionId">000</span></td>
- 		<td>Store: <span id="storeId">00</span></td>
+ 		<td style="text-align:right;">Store: <span id="storeId">00</span></td>
  	</tr>
  	<tr>
  		<td colspan="2">
- 		 Cashier: <?php echo (isset($_SESSION['userName'])?$_SESSION['userName']:"Guest");?>
+ 		 <center>Cashier: <?php echo (isset($_SESSION['userName'])?$_SESSION['userName']:"Guest");?></center>
  		</td>
  	</tr>
  </table>
@@ -58,23 +58,23 @@
                       <table id="recieptSummary" class="cell-border" width="100%">
                       	<tr>
                       		<td colspan="3">Entries</td>
-                      		<td style="width:100px"><span id="entries">0</span></td>
+                      		<td style="width:100px"><span id="entries" style="text-align:right;">0</span></td>
                       	</tr>
                      	<tr>
                       		<td colspan="3">Tax</td>
-                      		<td><span id="tax">0</span></td>
+                      		<td><span id="tax" style="text-align:right;">0</span></td>
                       	</tr>
-                     	<tr>
+                     	<tr style="border-top: 1px dashed;border-bottom:1px dashed;">
                       		<td colspan="3">Total</td>
-                      		<td><span id="totalAmount">0.000000</span></td>
+                      		<td ><span id="totalAmount" style="text-align:right;">0.000000</span></td>
                       	</tr>
                      	<tr>
                       		<td colspan="3">Cash Rcvd</td>
-                      		<td><span id="cashRecievedPreview"></span><input type="text" id="cashRecieved" class="form-control small" placeholder="0.0" size="5"></td>
+                      		<td><span id="cashRecievedPreview" style="text-align:right;"></span><input type="text" id="cashRecieved" class="form-control small" placeholder="0.0" size="5" style="border:1px dashed;height:15px;"></td>
                       	</tr>
                      	<tr>
                       		<td colspan="3">Balance</td>
-                      		<td><span id="balance">0</span></td>
+                      		<td><span id="balance" style="text-align:right;">0</span></td>
                       	</tr>
                     	<tr>
                       		<td colspan="4">
@@ -82,6 +82,7 @@
                       		    <input type="button" id="sendEmail" class="btn btn-success"  value="Email" data-toggle="modal" data-target="#sendEmailRecieptModal">
                       			<input type="button" id="submitReciept" class="btn btn-success"  value="Submit" >
                       			<input type="button" id="cancelReciept" onclick="location.reload()" class="btn btn-danger" value="Cancel" >
+                      			<input type="button" id="newReciept" onclick="location.reload()" class="btn btn-danger" value="New Reciept" >
                       		</td>
                       	</tr>
                       </table>

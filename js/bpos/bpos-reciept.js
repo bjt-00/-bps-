@@ -22,6 +22,7 @@ $(document).ready(function() {
 		  $('#cancelReciept').hide();
 		  $('#printReciept').show();
 		  $('#sendEmail').show();
+		  $('#newReciept').show();
 	});
 	
 	$("#printReciept").click(function(){
@@ -54,5 +55,6 @@ $(document).ready(function() {
     $('#cancelReciept').hide();
     $('#printReciept').hide();
     $('#sendEmail').hide();
+    $('#newReciept').hide();
 		
 } );
