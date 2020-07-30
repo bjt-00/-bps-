@@ -132,13 +132,35 @@ $(document).ready(function() {
 		$('#priceTag').html(productPrice);
 		$('#productQuantity').attr("max",productQuantity);
 		$('#productQuantity').val(1);
+		$('#minQuantity').html($('#productQuantity').attr("min"));
+	    $('#maxQuantity').html(productQuantity);
+		
 		$('#quantity').html(" - 1");
 	    $('#productDiscount').attr("max",productDiscount);
 	    $('#productDiscount').val(0);
+	    $('#minDiscount').html($('#productDiscount').attr("min"));
+	    $('#maxDiscount').html(productDiscount);
 	    $('#discount').html(" - 0");
 	    $('#productQuantity').attr("max",productQuantity);
 	    $('#productSize').html(productSize);
 	    var productImage =productImagesPath+productId+".jpg";
+	    
+	    //out of stock
+	    if(productQuantity<=0){
+	    	//productImage =productImagesPath+"-1"+".jpg";
+	    	$('#productQuantity').attr("disabled","disabled");
+	    	$('#productDiscount').attr("disabled","disabled");
+	    	$('#autoAddMode').attr("disabled","disabled");
+	    	
+	    	$('#priceTag').html("Out of stock");
+	    }else{
+	    	$('#productQuantity').removeAttr("disabled");
+	    	$('#productDiscount').removeAttr("disabled");
+	    	$('#autoAddMode').removeAttr("disabled");
+	    	$('#productStatus').html("");
+	    	$('#productStatus').hide();
+	    }
+	    
 		 $("#productImage").attr("src",productImage);
 	}
 	
@@ -159,7 +181,7 @@ $(document).ready(function() {
 					 
 					//add product into reciept
 					var isAutoMode=$("#autoAddMode").prop("checked");
-					if(isAutoMode){
+					if(isAutoMode && product.totalInStock>0){
 						addProductIntoReciept(product.productId,product.productName);
 					}
 

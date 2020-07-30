@@ -1,7 +1,13 @@
  <?php 
  class DataAccess{
      
- 
+     /*
+      public $host = "thesuffahorg.netfirmsmysql.com";
+      public $user ="bitguiderspos";
+      public $password  ="<Smr@rmS_14>;";
+      public $db   ="bpos";
+      
+      */	
    	public $host = "localhost";
    	public $user ="root";
    	public $password  ="";

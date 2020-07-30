@@ -49,7 +49,9 @@
                             	</tr>
 	                           	<tr>
                             	    <td colspan="2">
+                            	    <span id="minQuantity"></span>
                             	      <input type="range" id="productQuantity" min="1" max="1" value="1">
+                            	      <span id="maxQuantity"></span>
                             	    </td>
                             	</tr>
 	                           	<tr>
@@ -57,7 +59,9 @@
                             	</tr>
 	                           	<tr>
                             	    <td colspan="2">
+                            	      <span id="minDiscount"></span>
                             	      <input type="range" id="productDiscount" min="0" max="0" value="0">
+                            	      <span id="maxDiscount"></span>
                             	    </td>
                             	</tr>
 	                           	<tr>
