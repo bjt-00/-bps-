@@ -1,6 +1,10 @@
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-		 <img alt="Bitguider Point of Sale" src="themes/common/images/bposLogo.png">
+		 <?php if(strpos($_SERVER['REQUEST_URI'],'pos.php')){?>
+                     <img alt="Bitguider Point of Sale" src="themes/common/images/bposLogo.png">
+                  <?php }else{?>
+                    <img class="CompanyLogo" alt="<?php echo $companyName;?>" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.png">
+           <?php }?>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>

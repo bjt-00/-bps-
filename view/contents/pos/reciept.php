@@ -4,7 +4,7 @@
  <div id="recieptHeader" style="display:block">
  <div id="recieptHeader" >
    <center>
-	 <img class="CompanyLogo" alt="Company Logo" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.png">
+	 <img class="CompanyLogo" alt="<?php echo $companyName;?>" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.png">
    </center>
  </div>
  <div id="recieptAddress"><center><span id="storeAddress"></span></center></div>

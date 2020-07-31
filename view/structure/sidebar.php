@@ -6,7 +6,9 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">BPOS <sup>v-1.0</sup></div>
+        <div class="sidebar-brand-text mx-3">
+          <img class="BposLogo" alt="Bitguider Point of Sale" src="themes/common/images/bposLogo.png">
+        </div>
       </a>
 
       <!-- Divider -->

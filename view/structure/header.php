@@ -1,6 +1,12 @@
 <?php 
 session_start();
 header('Access-Control-Allow-Origin: *');
+
+if(!strpos($_SERVER['REQUEST_URI'],'http://www.bitguiders.com')&& !strpos($_SERVER['REQUEST_URI'],'localhost') && !isset($_SESSION['dontRedirectAgain'])){
+    header('location:http://www.bitguiders.com/bpos');
+    $_SESSION['dontRedirectAgain']='yes';
+}
+
 if(!isset($_SESSION['loginId']) && !strpos($_SERVER['REQUEST_URI'],'login.php')){
     header('location:login.php');
 }
