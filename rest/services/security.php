@@ -11,6 +11,7 @@ $url=$frontController->getUrlByRole(AppConstants::$ROLE_GUEST);
 if(isset($_POST['login'])){
     
     if($securityService->login($_POST['companyPrefix'],$_POST['loginId'], $_POST['password'])){
+        $_SESSION['companyPrefix']=$_POST['companyPrefix'];
         $url= $frontController->getUrlByRole($_SESSION['role']);// "../../dashboard.php";
     }
 }else if(isset($_GET['logout'])){
