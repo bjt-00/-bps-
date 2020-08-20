@@ -19,6 +19,19 @@
             $result = $dataaccess->getResult($query);
             return $json->jsonEncode($result);
         }
+        
+        function getProductList($companyPrefix){
+            $dataaccess = new DataAccess();
+            $json = new JSONConverter();
+            
+            $tableName = $dataaccess->getTableProduct($companyPrefix);
+            $query ="select product_id productId,product_name productName,total_in_stock totalInStock,
+             total_sold totalSold,purchase_price purchasePrice, sale_price salePrice,size
+             from ".$tableName;
+            
+             $result = $dataaccess->getResult($query);
+             return $json->jsonEncode($result);
+        }
     }
 
 ?>

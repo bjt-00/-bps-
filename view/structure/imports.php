@@ -11,6 +11,7 @@
  
    <!-- datatable -->
    <link href="js/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   
   
   
@@ -33,5 +34,7 @@
   <script src="js/datatables/dataTables.bootstrap4.min.js"></script>
   
     <script src="js/bpos/bpos.js"></script>
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   
   

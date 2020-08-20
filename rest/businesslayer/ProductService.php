@@ -7,5 +7,10 @@ class ProductService
         return $productDAO->search($searchText,$companyPrefix);
     }
     
+    function getProductList($companyPrefix){
+        $productDAO = new ProductDAO();
+        return $productDAO->getProductList($companyPrefix);
+    }
+    
 }
 

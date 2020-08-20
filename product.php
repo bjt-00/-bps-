@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-$_GET['title']='Point of Sale';
+$_GET['title']='Product';
 include 'view/structure/header.php'; 
 ?>
 <body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-	<?php //include 'view/structure/sidebar.php';?>
+	<?php include 'view/structure/sidebar.php';?>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -20,6 +20,12 @@ include 'view/structure/header.php';
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
+         <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800"><?php echo $companyName;?> Products</h1>
+            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+          </div>
+
 		  <?php include 'view/structure/alert.php'; ?>
 
 
@@ -28,10 +34,9 @@ include 'view/structure/header.php';
           <div class="row">
 			
             <!-- Reciept -->
-            <?php include 'view/contents/pos/reciept.php'; ?>
+            <?php include 'view/contents/product/productList.php'; ?>
  
-            <!-- Item Details -->
-            <?php include 'view/contents/product/productDetail.php';?>
+            
             
           </div>
 
@@ -58,29 +63,8 @@ include 'view/structure/header.php';
     <i class="fas fa-angle-up"></i>
   </a>
 
-   <script>
-   var settings = {
-	          output:"css",
-	          bgColor: "#FFFFFF",
-	          color: "#000000",
-	          barWidth: 1,
-	          barHeight: 15,
-	          moduleSize: 1,
-	          width:25,
-	          //posX: 10,
-	          //posY: 20,
-	          addQuietZone: 0
-	        };
-   //var value = {code:"0000000000056", rect: true};
-   //$("#transactionIdBarcode").barcode("0000000000009","ean13",settings);
-   $("#transactionIdBarcode").barcode("000","datamatrix");
-   </script>
- 
    <!-- Page level custom scripts -->
-  <script src="js/bpos/bpos-reciept.js"></script>
-  <script src="js/bpos/bpos-datatable.js"></script>
-  <script src="js/bpos/bpos-product-detail.js"></script>
-  <script src="js/bpos/bpos-store.js"></script>
+  <script src="js/bpos/bpos-product-datatable.js"></script>
   
 </body>
 
