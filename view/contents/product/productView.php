@@ -38,7 +38,8 @@ $companyPrefix = (isset($_SESSION['companyPrefix'])?$_SESSION['companyPrefix']:'
 <tr><td><label>Sale Price:</label><?php echo $salePrice;?></td></tr>
 <tr><td><label>In Stock:</label><?php echo $totalInStock;?> | <label>Sold:</label><?php echo $totalSold;?></td></tr>
 <tr><td>
-<a href="#" class="btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal">
+<?php $editProductParams = "'".$productId."','".$productName."','".$size."',".$purchasePrice.",".$salePrice.",".$totalInStock;?>
+<a href="#?productId=<?php echo $productId;?>" onclick="editProduct(<?php echo $editProductParams;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal">
 <i class="fas fa-pen"></i>
 </a>
 <?php echo $percentSold;?>% Sold

@@ -28,5 +28,11 @@ class AppConstants{
     static $SEARCH="search";
     static $MESSAGE_FORBIDDEN='{"message":"Request Forbidden"}';
     static $MESSAGE_BAD_REQUEST='{"message":"Bad Request, Check if required params is missing."}';
+    
+    static $ACTION="action";
+    static $ACTION_ADD="Add";
+    static $ACTION_UPDATE="Update";
+    static $ACTION_DELETE="Delete";
+    
 }
 ?>

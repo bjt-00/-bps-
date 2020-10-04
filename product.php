@@ -5,7 +5,7 @@ $_GET['title']='Product';
 include 'view/structure/header.php'; 
 ?>
 <body id="page-top">
-
+ 
   <!-- Page Wrapper -->
   <div id="wrapper">
 	<?php include 'view/structure/sidebar.php';?>
@@ -23,7 +23,12 @@ include 'view/structure/header.php';
          <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800"><?php echo $companyName;?> Products</h1>
-            <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+              <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#productFormModal">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-plus"></i>
+                    </span>
+                    <span class="text">Add</span>
+                  </a>
           </div>
 
 		  <?php include 'view/structure/alert.php'; ?>
@@ -65,6 +70,7 @@ include 'view/structure/header.php';
 
    <!-- Page level custom scripts -->
   <script src="js/bpos/bpos-product-datatable.js"></script>
+   <script src="js/bpos/bpos-product-form.js"></script>
   
 </body>
 

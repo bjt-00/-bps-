@@ -1,6 +1,7 @@
  <?php 
  class DataAccess{
      
+     
    	public $host = "localhost";
    	public $user ="root";
    	public $password  ="";
@@ -51,7 +52,8 @@
    
    //replace special characters to avoid SQL Injection attacks
    function sqlInjectionFilter($input){
-       $filteredInput= str_replace("'", "", $input);
+       $filteredInput= trim($input);
+       $filteredInput= str_replace("'", "", $filteredInput);
        $filteredInput= str_replace('"', "", $filteredInput);
        $filteredInput= str_replace('|', "", $filteredInput);
        return $filteredInput;

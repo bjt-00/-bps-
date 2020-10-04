@@ -42,16 +42,17 @@ $(document).ready(function() {
 	            
 	            //delete
 	            //$('#delete').attr("style","display:");
-	            $('#delete').show();
-	            $('#modalTitle').html("Do you really want to delete "+this.id);
+	            //$('#delete').show();
+	            //$('#modalTitle').html("Do you really want to delete "+this.id);
 	            
 	            
-	            $('#edit').show();
-	            var selectedRow = table.row(this).data();
-	            $('#status').html('>>> '+selectedRow[2]);
+	            //$('#edit').show();
+	            var selectedRow = productTable.row(this).data();
+	            //$('#status').html('>>> '+selectedRow[1]);
 	            for(var i=0;i<selectedRow.length;i++){
-	            	$('#status').html($('#status').html()+'>>>- '+selectedRow[i]);
-	            	$('#field'+i).val(selectedRow[i]);
+	            	//$('#status').html($('#status').html()+'>>>- '+selectedRow[i]);
+	            	//$('#field'+i).val(selectedRow[i]);
+	            	infoAlert(">>"+selectedRow[i]);
 	            }
 	            
 	            //edit

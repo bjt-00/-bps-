@@ -34,6 +34,7 @@
   <script src="js/datatables/dataTables.bootstrap4.min.js"></script>
   
     <script src="js/bpos/bpos.js"></script>
+    <script src="js/bpos/bitguiders-alert.js"></script>
   <!-- Angular -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   
