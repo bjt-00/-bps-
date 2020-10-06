@@ -77,7 +77,7 @@
  .sidebar-dark .nav-item .nav-link:active i,.sidebar-dark .nav-item .nav-link:focus i,.sidebar-dark .nav-item .nav-link:hover i{color:white;}
  .sidebar-dark .nav-item .nav-link[data-toggle=collapse]::after{color:rgba(255,255,255,.5)}
  .sidebar-dark .nav-item.active .nav-link{color:white;}
- .sidebar-dark .nav-item.active .nav-link i{color:purple}
+ .sidebar-dark .nav-item.active .nav-link i{color:white;}
  .sidebar-dark #sidebarToggle{background-color:rgba(255,255,255,.2)}
  .sidebar-dark #sidebarToggle::after{color:rgba(255,255,255,.5)}
  .sidebar-dark #sidebarToggle:hover{background-color:rgba(255,255,255,.25)}

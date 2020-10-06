@@ -10,6 +10,7 @@ if(!strpos($_SERVER['REQUEST_URI'],'http://www.bitguiders.com')&& !strpos($_SERV
 if(!isset($_SESSION['loginId']) && !strpos($_SERVER['REQUEST_URI'],'login.php')){
     header('location:login.php');
 }
+$display="style='display:none'";
 ?>
 
 <?php 

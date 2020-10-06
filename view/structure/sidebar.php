@@ -4,7 +4,7 @@
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          <i class="fas fa-laugh-wink" <?php echo $display;?>></i>
         </div>
         <div class="sidebar-brand-text mx-3">
           <img class="BposLogo" alt="Bitguider Point of Sale" src="themes/common/images/bposLogo.png">
@@ -17,20 +17,30 @@
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
         <a class="nav-link" href="pos.php" target="new">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <i class="fas fa-fw fa-shopping-cart"></i>
           <span>Point of Sale</span></a>
       </li>
 
+     <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="product.php" target="new">
+          <i class="fas fa-fw fa-shopping-bag"></i>
+          <span>Product</span></a>
+      </li>
+
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider" <?php echo $display;?>>
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <div class="sidebar-heading" <?php echo $display;?>>
         Menu
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item" <?php echo $display;?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
           <span>Manage</span>
@@ -43,7 +53,7 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item" <?php echo $display;?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
@@ -62,15 +72,15 @@
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider" <?php echo $display;?>>
 
       <!-- Heading -->
-      <div class="sidebar-heading">
+      <div class="sidebar-heading" <?php echo $display;?>>
         Addons
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+      <li class="nav-item" <?php echo $display;?>>
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -90,24 +100,24 @@
       </li>
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      <li class="nav-item" <?php echo $display;?>>
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <li class="nav-item" <?php echo $display;?>>
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
       </li>
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <hr class="sidebar-divider d-none d-md-block" <?php echo $display;?>>
 
       <!-- Sidebar Toggler (Sidebar) -->
-      <div class="text-center d-none d-md-inline">
+      <div class="text-center d-none d-md-inline" <?php echo $display;?>>
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
 
