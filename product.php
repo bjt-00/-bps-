@@ -39,7 +39,7 @@ include 'view/structure/header.php';
           <div class="row">
 			
             <!-- Reciept -->
-            <?php include 'view/contents/product/productList.php'; ?>
+            <?php $_GET['viewMode']='full'; include 'view/contents/product/productList.php'; ?>
  
             
             
@@ -68,9 +68,6 @@ include 'view/structure/header.php';
     <i class="fas fa-angle-up"></i>
   </a>
 
-   <!-- Page level custom scripts -->
-  <script src="js/bpos/bpos-product-datatable.js"></script>
-   <script src="js/bpos/bpos-product-form.js"></script>
   
 </body>
 

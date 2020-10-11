@@ -53,14 +53,15 @@
         
         function add($companyPrefix,$productId,$productName,$noOfItems,$purchasePrice,$salePrice,$size){
             $status ='';
-            $productId = (null==$productId?'':$productId);
-            $productId = (''==$productId?$productName:$productId);
-
+ 
             $dataaccess = new DataAccess();
             $tableName = $dataaccess->getTableProduct($companyPrefix);
+ 
+            $productId = (null==$productId?'':$productId);
+            $productId = (''==$productId?"(select case when max(i.product_id) is not null then max(i.product_id)+1 else 1 end as id from ".$tableName." i)":$productId);
             
            $query="insert into ".$tableName." values("
-           ."'".$dataaccess->sqlInjectionFilter($productId)."','"
+           ."".$productId.",'"
            .$dataaccess->sqlInjectionFilter($productName)."',"
            .$dataaccess->sqlInjectionFilter($noOfItems).","
            ."0,"//totalSold
@@ -69,7 +70,7 @@
            ."'".$dataaccess->sqlInjectionFilter($size)."')";
            $this->productId =$dataaccess->executeQuery($query);
            if($this->productId==0){
-               $this->productId=$productId;
+               $this->productId=$productName;
            }
            $status="Griven product saved successfully.";
            //$status =$status.'<br>'.$query;

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $productId = (isset($_GET['productId'])?$_GET['productId']:'000');
 $productName = (isset($_GET['productName'])?$_GET['productName']:'');
@@ -18,36 +18,54 @@ if($percentSold>=50 && $percentSold <75 ) $progressBarColor= 'bg-warning';
 if($percentSold>=75 ) $progressBarColor= 'bg-danger';
 
 $companyPrefix = (isset($_SESSION['companyPrefix'])?$_SESSION['companyPrefix']:'default');
+$viewMode = (isset($_GET['viewMode'])?$_GET['viewMode']:'default');
+$displayComponent=($viewMode!='full'?"style='display:none'":'');
+$imagePreview=($viewMode!='full'?"style='width:100px;height:90px;'":"style='width:150px;height:140px;'");
 ?>
-<table>
-<tr>
-<td rowspan="7" colspan="1" >
 <div class="row">
-<img id="productImage" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/products/<?php echo $productId;?>.jpg" width="150" height="140"  >
+           <!-- Earnings (Monthly) Card Example -->
+            <div class="col-xl-12 col-md-12 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <img id="productImage" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/products/<?php echo $productId;?>.jpg" <?php echo $imagePreview;?>  >
+                    </div>
+                    <?php echo ($viewMode=='full'?'':'</div>');//for compact view keep barcode in second row?>
+                    <div class="col-auto" >
+                      <div id="product<?php echo $productId;?>BarCode"></div>
+                    </div>
+                   <?php echo ($viewMode=='full'?'</div>':'')?>
+                    
+                      <div class=" row h5 mb-0 font-weight-bold text-gray-800">
+                        <span title="Sale Price"><?php echo $salePrice;?></span>
+                        <span title="Purchase Price" <?php echo $displayComponent;?>>/<?php echo $purchasePrice;?></span>
+                      </div>
+                      
+                      <div class=" row text-xs font-weight-bold text-primary mb-1">
+                      	<?php echo $productName;?> - (<?php echo $size;?>)
+                      </div>
+
+                      <div class=" row text-xs" <?php echo $displayComponent;?>>
+                        In Stock:<?php echo $totalInStock;?> | Sold:<?php echo $totalSold;?>
+                      </div>
+                      
+                        <?php $editProductParams = "'".$productId."','".$productName."','".$size."',".$purchasePrice.",".$salePrice.",".$totalInStock;?>
+                       <div class="row">
+                            <a href="#?productId=<?php echo $productId;?>" onclick="editProduct(<?php echo $editProductParams;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal" <?php echo $displayComponent;?>>
+                            <i class="fas fa-pen"></i>
+                            </a>
+                            <span <?php echo $displayComponent;?>><?php echo $percentSold;?>% Sold</span>
+                        </div>
+                        <div class="row progress progress-sm mr-2" <?php echo $displayComponent;?>>
+                          <div class="progress-bar <?php echo $progressBarColor;?>" role="progressbar" style="width: <?php echo $percentSold;?>%" aria-valuenow="<?php echo $totalSold;?>" aria-valuemin="0" aria-valuemax="<?php echo ($totalInStock+$totalSold);?>"></div>
+                        </div>
+                 
+                </div>
+              </div>
+            </div>
 </div>
-<div class="row">
-<div id="product<?php echo $productId;?>BarCode"></div>
-</div>
-</td>
-</tr>
-<tr>
-<td><label>Name :</label><?php echo $productName;?></td>
-</tr>
-<tr><td><label>Size:</label><?php echo $size;?></td></tr>
-<tr><td><label>Purchase Price:</label><?php echo $purchasePrice;?></td></tr>
-<tr><td><label>Sale Price:</label><?php echo $salePrice;?></td></tr>
-<tr><td><label>In Stock:</label><?php echo $totalInStock;?> | <label>Sold:</label><?php echo $totalSold;?></td></tr>
-<tr><td>
-<?php $editProductParams = "'".$productId."','".$productName."','".$size."',".$purchasePrice.",".$salePrice.",".$totalInStock;?>
-<a href="#?productId=<?php echo $productId;?>" onclick="editProduct(<?php echo $editProductParams;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal">
-<i class="fas fa-pen"></i>
-</a>
-<?php echo $percentSold;?>% Sold
-<div class="progress progress-sm mr-2">
-  <div class="progress-bar <?php echo $progressBarColor;?>" role="progressbar" style="width: <?php echo $percentSold;?>%" aria-valuenow="<?php echo $totalSold;?>" aria-valuemin="0" aria-valuemax="<?php echo ($totalInStock+$totalSold);?>"></div>
-</div>
-</td></tr>
-</table>
+
 
    <script>
    var settings = {

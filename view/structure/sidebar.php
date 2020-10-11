@@ -12,20 +12,33 @@
       </a>
 
       <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+      <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'dashboard.php')?"style='display:none'":'')?>
+      <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item active" <?php echo $showHideItem?>>
+        <a class="nav-link" href="dashboard.php" target="new">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'pos.php')?"style='display:none'":'')?>
+      <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active" <?php echo $showHideItem?>>
         <a class="nav-link" href="pos.php" target="new">
           <i class="fas fa-fw fa-shopping-cart"></i>
           <span>Point of Sale</span></a>
       </li>
 
      <!-- Divider -->
-      <hr class="sidebar-divider my-0">
+     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'product.php')?"style='display:none'":'')?>
+      <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item active" <?php echo $showHideItem?>>
         <a class="nav-link" href="product.php" target="new">
           <i class="fas fa-fw fa-shopping-bag"></i>
           <span>Product</span></a>

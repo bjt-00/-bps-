@@ -29,9 +29,6 @@
     <!-- barcode -->
     <script type="text/javascript" src="js/jquery-barcode.js"></script>
   
-   <!-- datatable -->
-  <script src="js/datatables/jquery.dataTables.min.js"></script>
-  <script src="js/datatables/dataTables.bootstrap4.min.js"></script>
   
     <script src="js/bpos/bpos.js"></script>
     <script src="js/bpos/bitguiders-alert.js"></script>

@@ -9,11 +9,11 @@
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
-                      <div class="dropdown-header">Dropdown Header:</div>
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Something else here</a>
+                      <div class="dropdown-header" <?php echo $display?> >Dropdown Header:</div>
+                      <a class="dropdown-item" href="#" data-toggle="modal" data-target="#productListModal">Product List</a>
+                      <a class="dropdown-item" href="#" <?php echo $display?>>Another action</a>
+                      <div class="dropdown-divider" <?php echo $display?>></div>
+                      <a class="dropdown-item" href="#" <?php echo $display?>>Something else here</a>
                     </div>
                   </div>
                 </div>
@@ -85,3 +85,24 @@
                 </div>
               </div>
             </div>
+
+<!-- Submit Reciept Modal-->
+  <div class="modal fade" id="productListModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">Product List</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <?php $_GET['viewMode']="compact"; include 'productList.php';?>
+        </div>
+        <div class="modal-footer">
+          <input type="button" id="popupActionButton" class="btn btn-info" value="Add" >
+          <button  class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

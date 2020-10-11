@@ -1,9 +1,12 @@
-
-<table class="display" id="productTable" width="100%">
+<?php 
+$viewMode = (isset($_GET['viewMode'])?$_GET['viewMode']:'default');
+?>
+<input type="hidden" id="viewMode" value="<?php echo $viewMode;?>">
+<table class="table table-bordered" id="productTable" width="100%">
     <thead>
         <tr>
+            <th>Product Name</th>
             <th>Product Details</th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -39,5 +42,9 @@
       </div>
     </div>
   </div>
+
+   <!-- Page level custom scripts -->
+  <script src="js/bpos/bpos-product-datatable.js"></script>
+   <script src="js/bpos/bpos-product-form.js"></script>
 
   

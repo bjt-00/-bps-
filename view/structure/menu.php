@@ -1,7 +1,9 @@
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 		 <?php if(strpos($_SERVER['REQUEST_URI'],'pos.php')){?>
+		 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                      <img alt="Bitguider Point of Sale" src="themes/common/images/bposLogo.png">
+                    </a>
                   <?php }else{?>
                     <img class="CompanyLogo" alt="<?php echo $companyName;?>" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.png">
            <?php }?>
