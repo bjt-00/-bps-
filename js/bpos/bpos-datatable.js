@@ -106,6 +106,7 @@ $(document).ready(function() {
 	    $('#cancelReciept').show();
 	    
 	    updateBalance();
+	    infoAlert(productName+" added into reciept.")
 	}
 	
 	//Recieve Cash

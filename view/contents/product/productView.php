@@ -52,8 +52,11 @@ $imagePreview=($viewMode!='full'?"style='width:100px;height:90px;'":"style='widt
                       
                         <?php $editProductParams = "'".$productId."','".$productName."','".$size."',".$purchasePrice.",".$salePrice.",".$totalInStock;?>
                        <div class="row">
-                            <a href="#?productId=<?php echo $productId;?>" onclick="editProduct(<?php echo $editProductParams;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal" <?php echo $displayComponent;?>>
+                            <a title="Edit" href="#?productId=<?php echo $productId;?>" onclick="editProduct(<?php echo $editProductParams;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal" <?php echo $displayComponent;?>>
                             <i class="fas fa-pen"></i>
+                            </a>
+                             <a title="Add to Reciept" id="addToReciept" href="#?productId=<?php echo $productId;?>" onclick="addToReciept('<?php echo $productId;?>')" class="editProduct btn btn-info btn-circle btn-sm"  <?php echo ($viewMode=='compact'?'':'style="display:none"');?>>
+                            <i class="fas fa-plus"></i>
                             </a>
                             <span <?php echo $displayComponent;?>><?php echo $percentSold;?>% Sold</span>
                         </div>
