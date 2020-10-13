@@ -50,7 +50,6 @@ $(document).ready(function() {
 		location.reload();
 	});
 
-	
     $('#submitReciept').hide();
     $('#cancelReciept').hide();
     $('#printReciept').hide();
@@ -58,3 +57,9 @@ $(document).ready(function() {
     $('#newReciept').hide();
 		
 } );
+
+function addToCart(productId){
+	$("#productListModal").modal("hide");
+	$("#searchProduct").val(productId);
+	$("#searchProduct").change();
+}

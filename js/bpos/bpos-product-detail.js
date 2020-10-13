@@ -37,7 +37,6 @@ $(document).ready(function() {
 		$("#searchProduct").focus();
 	});
 	
-	
 	$("#searchProduct").focus();
 	$("#addProduct").hide();
 } );

@@ -71,6 +71,16 @@ $(document).ready(function() {
 			});//get end
 		}//getProductView end
 	
+	function getSearchContent(searchResult,i) {
+		var searchContent='';
+		if(i<searchResult.length){var p1 = searchResult[i];searchContent +=p1.productName+","+p1.productId+",";}
+		//append send item for search
+		if(i+1<searchResult.length){var p2 = searchResult[i+1];searchContent +=p2.productName+","+p2.productId+",";}
+		//append third item for search
+		if(i+2<searchResult.length){var p3 = searchResult[i+2];searchContent +=p3.productName+","+p3.productId;}
+		return searchContent;
+	}
+	
 	function loadProducts(){
 	   // $('#dTable').DataTable().search( productName ).draw();
 		
@@ -85,21 +95,14 @@ $(document).ready(function() {
 					
 				 //var newRow = [p.productId,p.productName,p.size,p.purchasePrice,p.salePrice,p.totalInStock,p.totalSold];
 				var rowContent ="<div class='row'>"
-	                 +"<div id='prod1-"+p.productId+"' class='col-lg-3 card border-left-primary shadow py-1'>--</div>"
-	                 +"<div class='col-lg-1'>&nbsp;</div>"
-	                 +"<div id='prod3-"+p.productId+"' class='col-lg-3 card border-left-success shadow py-1'>--</div>"
-	                 +"<div class='col-lg-1'>&nbsp;</div>"
-	                 +"<div id='prod2-"+p.productId+"' class='col-lg-3 card border-left-warning shadow py-1'>--</div>"
-	                 +'</div>';
-				rowContent ="<div class='row'>"
 	                 +"<div id='prod1-"+p.productId+"' class='col-lg-4'></div>"
-	                 //+"<div class='col-lg-1'>&nbsp;</div>"
 	                 +"<div id='prod2-"+p.productId+"' class='col-lg-4 card'></div>"
-	                 //+"<div class='col-lg-1'>&nbsp;</div>"
 	                 +"<div id='prod3-"+p.productId+"' class='col-lg-4 card'></div>"
 	                 +'</div>';
-				var searchContent ="<div id='search-"+p.productId+"'></div>";
+				
+				
 				if(colIndex==1){
+					var searchContent = getSearchContent(searchResult,i);
 					var newRow = [searchContent,rowContent];
 					productTable.row.add(newRow).draw( false );
 					prepareProductView(p.productId,p.productName,p.size,p.purchasePrice,p.salePrice,p.totalInStock,p.totalSold,'#prod1-'+p.productId);
@@ -117,10 +120,19 @@ $(document).ready(function() {
 				searchContent +=p.productName+",";
 				$("#search-"+emptySlotId).html(searchContent);
 				
+				if(colIndex==1){
+					//$("#search-"+emptySlotId).parent().html(searchContent+"_-");
+					//$("#search-"+emptySlotId).remove();
+				}
+				
 			});//for end
 
 			//hide last empty slot
-			if(colIndex==2 || colIndex==3 ){$(emptySlotId).hide();}
+			if(colIndex==2 || colIndex==3 ){
+			$(emptySlotId).hide();
+			//$("#search-"+emptySlotId).parent().html(searchContent+"-_");
+			//$("#search-"+emptySlotId).remove();
+			}
 		},"json");//get end
 	}//loadProducts end
 	
