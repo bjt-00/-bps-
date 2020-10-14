@@ -34,7 +34,7 @@
                     
                               <!-- DataTales Example -->
                     
-                                    <table class="cell-border" id="dTable" width="100%" heith="100%" cellspacing="0">
+                                    <table class="cell-border" id="recieptTable" width="100%" heith="100%" cellspacing="0">
                                       <thead>
                                         <tr>
                                           <th style="width:65%">Item</th>
@@ -83,6 +83,7 @@
                       			<input type="button" id="submitReciept" class="btn btn-success"  value="Submit" >
                       			<input type="button" id="cancelReciept" onclick="location.reload()" class="btn btn-danger" value="Cancel" >
                       			<input type="button" id="newReciept" onclick="location.reload()" class="btn btn-danger" value="New Reciept" >
+                      			<input type="button" id="deleteRecieptItem" title="Delete Selected Item" class="btn btn-danger" value="Delete" >
                       		</td>
                       	</tr>
                       </table>

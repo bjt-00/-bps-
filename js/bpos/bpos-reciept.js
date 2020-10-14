@@ -39,7 +39,7 @@ $(document).ready(function() {
 		$("#recieptWeb").attr("style",recieptWidth2);
 		$("#recieptHeader3").attr("style",recieptWidth);
 		$("#recieptBarCode").attr("style",recieptWidth);
-		$("#dTable").attr("style",recieptWidth);
+		$("#recieptTable").attr("style",recieptWidth);
 		$("#recieptSummary").attr("style",recieptWidth);
 		
 		$("#cashRecievedPreview").attr("style","color:black;font-weight:bold;");
@@ -55,6 +55,7 @@ $(document).ready(function() {
     $('#printReciept').hide();
     $('#sendEmail').hide();
     $('#newReciept').hide();
+    $('#deleteRecieptItem').hide();
 		
 } );
 

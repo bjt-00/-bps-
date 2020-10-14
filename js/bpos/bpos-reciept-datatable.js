@@ -1,7 +1,7 @@
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
 
-	var dTable = $('#dTable').DataTable( {
+	var recieptTable = $('#recieptTable').DataTable( {
 		"language": {
             "lengthMenu": "Show _MENU_",
             "zeroRecords": "--Empty Reciept--",
@@ -18,7 +18,8 @@ $(document).ready(function() {
         "ordering":false
     } );
 	
-	 $('#dTable tbody').on( 'click', 'tr', function () {
+	 var selectedRow;
+	 $('#recieptTable tbody').on( 'click', 'tr', function () {
 	    	
 	        if ( $(this).hasClass('selected') ) {
 	            $(this).removeClass('selected');
@@ -27,7 +28,7 @@ $(document).ready(function() {
 	            $('#modalTitle').html("");
 	        }
 	        else {
-	            table.$('tr.selected').removeClass('selected');
+	        	recieptTable.$('tr.selected').removeClass('selected');
 	            $(this).addClass('selected');
 	            $('#selectedCauseId').val(this.id);
 	            
@@ -36,16 +37,18 @@ $(document).ready(function() {
 	            
 	            //delete
 	            //$('#delete').attr("style","display:");
-	            $('#delete').show();
-	            $('#modalTitle').html("Do you really want to delete "+this.id);
+	            $('#deleteRecieptItem').show();
+	            //$('#modalTitle').html("Do you really want to delete "+this.id);
 	            
 	            
-	            $('#edit').show();
-	            var selectedRow = table.row(this).data();
-	            $('#status').html('>>> '+selectedRow[2]);
+	            //$('#edit').show();
+	            selectedRow = recieptTable.row(this).data();
+	            //$('#status').html('>>> '+selectedRow[2]);
+	            infoAlert(">>"+selectedRow[0]);
 	            for(var i=0;i<selectedRow.length;i++){
-	            	$('#status').html($('#status').html()+'>>>- '+selectedRow[i]);
-	            	$('#field'+i).val(selectedRow[i]);
+	            	//$('#status').html($('#status').html()+'>>>- '+selectedRow[i]);
+	            	//$('#field'+i).val(selectedRow[i]);
+	            	//infoAlert(">>"+selectedRow[i]);
 	            }
 	            
 	            //edit
@@ -86,8 +89,8 @@ $(document).ready(function() {
 		var newProduct = {"productId":productId,"productName":productName,"productQuantity":productQuantity,"totalPrice":totalPrice};
 		recieptDetails.recieptProducts.push(newProduct);
 		
-		dTable.row.add(newRow).draw( false );
-	   // $('#dTable').DataTable().search( productName ).draw();
+		recieptTable.row.add(newRow).draw( false );
+	   // $('#recieptTable').DataTable().search( productName ).draw();
 	    
 		totalAmount +=totalPrice;
 	    //tax=totalAmount*0.01;
@@ -106,7 +109,7 @@ $(document).ready(function() {
 	    $('#cancelReciept').show();
 	    
 	    updateBalance();
-	    infoAlert(productName+" added into reciept.")
+	    //infoAlert(productName+" added into reciept.")
 	}
 	
 	//Recieve Cash
@@ -202,6 +205,30 @@ $(document).ready(function() {
 
 	});
 	
+	   //delete selected row
+    $('#deleteRecieptItem').click( function () {
+    	//var selectedCaseId = $('#selectedCaseId').val();
+    	//var selectedCaseTitle = $('#selectedCaseTitle').val();
+    	totalAmount -= selectedRow[2];
+    	$("#totalAmount").html(totalAmount);
+
+    	entries -= 1;
+    	$("#entries").html(entries);
+
+    	warningAlert("Selected Item '"+selectedRow[0]+"' Deleted Successfully ");
+    	
+    	//var url = restHost+"/case/index.php?s=case";
+    	//$.post(url,{causeId:selectedCaseId,title:selectedCaseTitle,action:'delete'}).done(
+    	//function(data){
+    	//	$('#status').html('Data Loaded '+data.causeId);
+    	//});
+    	
+    	//call delete services
+        recieptTable.row('.selected').remove().draw( false );
+        $('#deleteRecieptItem').hide();
+        //$('#edit').hide();
+        updateBalance();
+    } );
 
 		
 } );

@@ -60,7 +60,7 @@ $(document).ready(function() {
 	    } );
 	
 	 function prepareProductView(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold,emptySlotId){
-		   // $('#dTable').DataTable().search( productName ).draw();
+		   // $('#recieptTable').DataTable().search( productName ).draw();
 			
 					//setProductDetails(,,,product.totalInStock,discount,product.totalInStock,product.size);
 		 var viewMode = $("#viewMode").val();
@@ -82,7 +82,7 @@ $(document).ready(function() {
 	}
 	
 	function loadProducts(){
-	   // $('#dTable').DataTable().search( productName ).draw();
+	   // $('#recieptTable').DataTable().search( productName ).draw();
 		
 				//setProductDetails(,,,product.totalInStock,discount,product.totalInStock,product.size);
 	 var url = restApiPath+"product.php";
