@@ -34,5 +34,8 @@ class AppConstants{
     static $ACTION_UPDATE="Update";
     static $ACTION_DELETE="Delete";
     
+    static $REPORT_DAILY_SUMMARY="dailySummary";
+    static $REPORT_MONTHLY_SUMMARY="monthlySummary";
+    static $REPORT_ANNUAL_SUMMARY="annualSummary";
 }
 ?>

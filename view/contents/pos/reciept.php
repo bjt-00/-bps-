@@ -70,7 +70,9 @@
                       	</tr>
                      	<tr>
                       		<td colspan="3">Cash Rcvd</td>
-                      		<td><span id="cashRecievedPreview" style="text-align:right;"></span><input type="text" id="cashRecieved" class="form-control small" placeholder="0.0" size="5" style="border:1px dashed;height:15px;"></td>
+                      		<td><span id="cashRecievedPreview" style="text-align:right;"></span>
+                      		  <input type="text" id="cashRecieved" class="form-control small" placeholder="0.0" size="5" style="border:1px dashed;height:23px;">
+                      		</td>
                       	</tr>
                      	<tr>
                       		<td colspan="3">Balance</td>
