@@ -37,5 +37,6 @@ class AppConstants{
     static $REPORT_DAILY_SUMMARY="dailySummary";
     static $REPORT_MONTHLY_SUMMARY="monthlySummary";
     static $REPORT_ANNUAL_SUMMARY="annualSummary";
+    static $REPORT_ANNUAL_SUMMARY_BY_MONTH="annualSummaryByMonth";
 }
 ?>

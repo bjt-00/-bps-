@@ -32,6 +32,24 @@ class ReportDAO {
         return $this->getSaleSummary($companyPrefix,"%Y");
     }
     
+    function getAnnualSaleSummaryByMonth($companyPrefix){
+        $dataaccess = new DataAccess();
+        $json = new JSONConverter();
+        $dateFormat='%M-%Y';
+        $tableName = $dataaccess->getTableSaleTransaction($companyPrefix);
+        $query ='SELECT sum(total_amount) totalAmount,'
+        .'sum(cash_recieved-balance) totalSaleAmount,'
+        .'sum(total_amount-(cash_recieved-balance)) totalBalance,'
+        .'date_format(transaction_date_time,"%M") month, '
+        .'date_format(transaction_date_time,"'.$dateFormat.'") date '
+        .'FROM '.$tableName.' '
+        .'where date_format(transaction_date_time,"%Y") = date_format(CURRENT_DATE,"%Y")'
+        .'group by currency,date_format(transaction_date_time,"'.$dateFormat.'")';
+
+        //echo $query;
+        $result = $dataaccess->getResult($query);
+        return $json->jsonEncode($result);
+    }
     
 }
 ?>

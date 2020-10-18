@@ -11,6 +11,8 @@ class ReportService
             return $reportDAO->getMonthlySaleSummary($companyPrefix);
         }else if($searchText==AppConstants::$REPORT_ANNUAL_SUMMARY){
             return $reportDAO->getAnnualSaleSummary($companyPrefix);
+        }else if($searchText==AppConstants::$REPORT_ANNUAL_SUMMARY_BY_MONTH){
+            return $reportDAO->getAnnualSaleSummaryByMonth($companyPrefix);
         }else {
             return AppConstants::$MESSAGE_BAD_REQUEST;
         }

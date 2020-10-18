@@ -100,7 +100,6 @@
            <?php $_GET['viewMode']="compact"; include 'productList.php';?>
         </div>
         <div class="modal-footer">
-          <input type="button" id="popupActionButton" class="btn btn-info" value="Add" >
           <button  class="btn btn-danger" type="button" data-dismiss="modal">Close</button>
         </div>
       </div>

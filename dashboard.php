@@ -29,59 +29,37 @@ include 'view/structure/header.php';
 		  <?php include 'view/structure/alert.php'; ?>
           <!-- Content Row -->
           <div class="row">
-            <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Today)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="dailySummary">10,000 PKR</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
 
+          <!-- Earnings (Monthly) Card Example -->
+          <?php 
+          $_GET['heading'] = 'Earnings ('.date('M-d').')';
+          $_GET['content'] = '<span id="dailySummary">0.000 PKR</span>';
+          $_GET['description'] = '<span id="dailySummaryDetails">0.000 PKR</span>';
+          $_GET['title'] = 'Amount that customer has to pay back';
+          $_GET['type']='primary';
+           include 'view/structure/components/boxSmall.php';
+          ?>
+ 
             <!-- Earnings (Monthly) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Earnings (Monthly)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="monthlySummary">$215,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+           <?php 
+              $_GET['heading'] = 'Earnings ('.date('M-Y').')';
+              $_GET['content'] = '<span id="monthlySummary">0.000 PKR</span>';
+              $_GET['description'] = '<span id="monthlySummaryDetails">0.000 PKR</span>';
+              $_GET['type']='warning';
+              include 'view/structure/components/boxSmall.php';
+          ?>
+ 
         <!-- Earnings (Annual) Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800" id="annualSummary">$215,000</div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+           <?php 
+              $_GET['heading'] = 'Earnings ('.date('Y').')';
+              $_GET['content'] = '<span id="annualSummary">0.000 PKR</span>';
+              $_GET['description'] = '<span id="annualSummaryDetails">0.000 PKR</span>';
+              $_GET['type']='success';
+              include 'view/structure/components/boxSmall.php';
+          ?>
+ 
             <!-- Pending Requests Card Example -->
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-3 col-md-6 mb-4" <?php echo $display;?>>
               <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
@@ -122,7 +100,7 @@ include 'view/structure/header.php';
                   </div>
                 </div>
                 <!-- Card Body -->
-                <div class="card-body">
+                <div class="card-body" id="chartDiv">
                   <div class="chart-area">
                     <canvas id="myAreaChart"></canvas>
                   </div>
@@ -350,7 +328,7 @@ include 'view/structure/header.php';
   <script src="js/chart/chart.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/chart/chart-area-demo.js"></script>
+  <script src="js/bpos/chart/bpos-earning-chart.js"></script>
   <script src="js/chart/chart-pie-demo.js"></script>
   <script src="js/bpos/bpos-dashboard.js"></script>
 </body>

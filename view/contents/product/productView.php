@@ -25,7 +25,7 @@ $imagePreview=($viewMode!='full'?"style='width:100px;height:90px;'":"style='widt
 <div class="row">
            <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-12 col-md-12 mb-4">
-              <div class="card border-left-warning shadow h-100 py-2">
+              <div class="card border-left-<?php echo ($totalInStock>0?'success':'danger'); ?> shadow h-100 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
@@ -46,8 +46,8 @@ $imagePreview=($viewMode!='full'?"style='width:100px;height:90px;'":"style='widt
                       	<?php echo $productName;?> - (<?php echo $size;?>)
                       </div>
 
-                      <div class=" row text-xs" <?php echo $displayComponent;?>>
-                        In Stock:<?php echo $totalInStock;?> | Sold:<?php echo $totalSold;?>
+                      <div class=" row text-xs">
+                        <?php echo ($totalInStock>0?($totalInStock>3?'In Stock:'.$totalInStock:'<span style="color:orange">Only '.$totalInStock.' left</span'):'<strike style="font-weight:bold;color:red;">Sold</strike>');?>&nbsp; <span <?php echo $displayComponent;?>> | Sold:<?php echo $totalSold;?></span>
                       </div>
                       
                         <?php $editProductParams = "'".$productId."','".$productName."','".$size."',".$purchasePrice.",".$salePrice.",".$totalInStock;?>
@@ -55,7 +55,7 @@ $imagePreview=($viewMode!='full'?"style='width:100px;height:90px;'":"style='widt
                             <a title="Edit" href="#?productId=<?php echo $productId;?>" onclick="editProduct(<?php echo $editProductParams;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal" <?php echo $displayComponent;?>>
                             <i class="fas fa-pen"></i>
                             </a>
-                             <a title="Add to Reciept" id="addToReciept" href="#?productId=<?php echo $productId;?>" onclick="addToReciept('<?php echo $productId;?>')" class="editProduct btn btn-info btn-circle btn-sm"  <?php echo ($viewMode=='compact'?'':'style="display:none"');?>>
+                             <a title="Add to Reciept" id="addToReciept" href="#?productId=<?php echo $productId;?>" onclick="addToReciept('<?php echo $productId;?>')" class="editProduct btn btn-info btn-circle btn-sm"  <?php echo (($viewMode=='compact'&& $totalInStock>0)?'':'style="display:none"');?>>
                             <i class="fas fa-plus"></i>
                             </a>
                             <span <?php echo $displayComponent;?>><?php echo $percentSold;?>% Sold</span>

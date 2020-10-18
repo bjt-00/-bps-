@@ -7,6 +7,7 @@ $(document).ready(function(){
 				function(searchResult){
 					$.each(searchResult,function(i,report){
 						$("#"+reportType).html(report.totalSaleAmount+" "+report.currency);
+						$("#"+reportType+"Details").html(report.totalBalance+" "+report.currency);
 					});
 
 				},"json");
