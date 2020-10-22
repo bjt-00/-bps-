@@ -7,6 +7,7 @@ $purchasePrice = (isset($_GET['purchasePrice'])?$_GET['purchasePrice']:'0');
 $salePrice = (isset($_GET['salePrice'])?$_GET['salePrice']:'0');
 $totalInStock = (isset($_GET['totalInStock'])?$_GET['totalInStock']:'0');
 $totalSold = (isset($_GET['totalSold'])?$_GET['totalSold']:'0');
+$emptySlotId =(isset($_GET['emptySlotId'])?$_GET['emptySlotId']:'0');
 
 $percentSold = (($totalSold/($totalInStock+$totalSold))*100);
 $percentSold = round($percentSold,0);
@@ -19,8 +20,9 @@ if($percentSold>=75 ) $progressBarColor= 'bg-danger';
 
 $companyPrefix = (isset($_SESSION['companyPrefix'])?$_SESSION['companyPrefix']:'default');
 $viewMode = (isset($_GET['viewMode'])?$_GET['viewMode']:'default');
-$displayComponent=($viewMode!='full'?"style='display:none'":'');
-$imagePreview=($viewMode!='full'?"style='width:100px;height:90px;'":"style='width:150px;height:140px;'");
+$fullModeControll=($viewMode!='full'?"style='display:none'":'');
+$labelModeControll=($viewMode=='printlabel'?'style="display:none"':'');
+$imagePreview=(($viewMode!='full' && $viewMode!='printlabel')?"style='width:100px;height:90px;'":"style='width:150px;height:140px;'");
 ?>
 <div class="row">
            <!-- Earnings (Monthly) Card Example -->
@@ -31,36 +33,39 @@ $imagePreview=($viewMode!='full'?"style='width:100px;height:90px;'":"style='widt
                     <div class="col mr-2">
                       <img id="productImage" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/products/<?php echo $productId;?>.jpg" <?php echo $imagePreview;?>  >
                     </div>
-                    <?php echo ($viewMode=='full'?'':'</div>');//for compact view keep barcode in second row?>
+                    <?php echo (($viewMode=='full' || $viewMode=='printlabel')?'':'</div>');//for compact view keep barcode in second row?>
                     <div class="col-auto" >
-                      <div id="product<?php echo $productId;?>BarCode"></div>
+                      <div id="product<?php echo $productId.$emptySlotId;?>BarCode"></div>
                     </div>
-                   <?php echo ($viewMode=='full'?'</div>':'')?>
+                   <?php echo (($viewMode=='full' || $viewMode=='printlabel')?'</div>':'')?>
                     
                       <div class=" row h5 mb-0 font-weight-bold text-gray-800">
                         <span title="Sale Price"><?php echo $salePrice;?></span>
-                        <span title="Purchase Price" <?php echo $displayComponent;?>>/<?php echo $purchasePrice;?></span>
+                        <span title="Purchase Price" <?php echo $fullModeControll;?>>/<?php echo $purchasePrice;?></span>
                       </div>
                       
                       <div class=" row text-xs font-weight-bold text-primary mb-1">
                       	<?php echo $productName;?> - (<?php echo $size;?>)
                       </div>
 
-                      <div class=" row text-xs">
-                        <?php echo ($totalInStock>0?($totalInStock>3?'In Stock:'.$totalInStock:'<span style="color:orange">Only '.$totalInStock.' left</span'):'<strike style="font-weight:bold;color:red;">Sold</strike>');?>&nbsp; <span <?php echo $displayComponent;?>> | Sold:<?php echo $totalSold;?></span>
+                      <div class=" row text-xs" <?php echo $labelModeControll;?>>
+                        <?php echo ($totalInStock>0?($totalInStock>3?'In Stock:'.$totalInStock:'<span style="color:orange">Only '.$totalInStock.' left</span'):'<strike style="font-weight:bold;color:red;">Sold</strike>');?>&nbsp; <span <?php echo $fullModeControll;?>> | Sold:<?php echo $totalSold;?></span>
                       </div>
                       
-                        <?php $editProductParams = "'".$productId."','".$productName."','".$size."',".$purchasePrice.",".$salePrice.",".$totalInStock;?>
+                        <?php $csvProduct = "'".$productId."','".$productName."','".$size."',".$purchasePrice.",".$salePrice.",".$totalInStock;?>
                        <div class="row">
-                            <a title="Edit" href="#?productId=<?php echo $productId;?>" onclick="editProduct(<?php echo $editProductParams;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal" <?php echo $displayComponent;?>>
+                            <a title="Edit" href="#?productId=<?php echo $productId;?>" onclick="editProduct(<?php echo $csvProduct;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#productFormModal" <?php echo $fullModeControll;?>>
                             <i class="fas fa-pen"></i>
                             </a>
                              <a title="Add to Reciept" id="addToReciept" href="#?productId=<?php echo $productId;?>" onclick="addToReciept('<?php echo $productId;?>')" class="editProduct btn btn-info btn-circle btn-sm"  <?php echo (($viewMode=='compact'&& $totalInStock>0)?'':'style="display:none"');?>>
                             <i class="fas fa-plus"></i>
                             </a>
-                            <span <?php echo $displayComponent;?>><?php echo $percentSold;?>% Sold</span>
+                            <a title="Add to Labels for Print" id="addToLabels" href="#" onclick="addToLabels(<?php echo $csvProduct.','.$totalSold;?>)" class="editProduct btn btn-info btn-circle btn-sm"  <?php echo (($viewMode=='pcompact'&& $totalInStock>0)?'':'style="display:none"');?>>
+                            <i class="fas fa-plus"></i>
+                            </a>
+                            <span <?php echo $fullModeControll;?>><?php echo $percentSold;?>% Sold</span>
                         </div>
-                        <div class="row progress progress-sm mr-2" <?php echo $displayComponent;?>>
+                        <div class="row progress progress-sm mr-2" <?php echo $fullModeControll;?>>
                           <div class="progress-bar <?php echo $progressBarColor;?>" role="progressbar" style="width: <?php echo $percentSold;?>%" aria-valuenow="<?php echo $totalSold;?>" aria-valuemin="0" aria-valuemax="<?php echo ($totalInStock+$totalSold);?>"></div>
                         </div>
                  
@@ -85,5 +90,5 @@ $imagePreview=($viewMode!='full'?"style='width:100px;height:90px;'":"style='widt
 	        };
    //var value = {code:"0000000000056", rect: true};
    //$("#transactionIdBarcode").barcode("0000000000009","ean13",settings);
-   $("#product<?php echo $productId;?>BarCode").barcode("<?php echo $productId;?>","datamatrix");
+   $("#product<?php echo $productId.$emptySlotId;?>BarCode").barcode("<?php echo $productId;?>","datamatrix");
    </script>

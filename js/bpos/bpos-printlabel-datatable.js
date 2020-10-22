@@ -1,12 +1,12 @@
 // Call the dataTables jQuery plugin
+var addToLabelsTable;
 $(document).ready(function() {
-	var viewMode = $("#viewMode").val();
-	
-	var productTable = $('#productTable').DataTable( {
+	var viewMode = $("#viewMode2").val();
+	var productTable = $('#productTable2').DataTable( {
 		"language": {
             "lengthMenu": "Show _MENU_",
-            "zeroRecords": "--Empty Product List--",
-             "info": "Page: _PAGE_/_PAGES_ ,Total Records: _MAX_",
+            "zeroRecords": "--Empty Labels List--",
+             "info": "Page: _PAGE_/_PAGES_ ,Total Labels: _MAX_",
             "infoEmpty": "No records available",
             "infoFiltered": "(Total of _MAX_ Records)",
              "search":"Search"
@@ -19,15 +19,14 @@ $(document).ready(function() {
         ],
         //"scrollY":        "200px",
         "scrollCollapse": true,
-        "paging":         true,
+        "paging":         false,
         "info":true,
-        "searching":true,
+        "searching":false,
         "ordering":true,
-        "bSort" : true,
-        buttons:['print']
+      //dom: "Bfrtip",
+        buttons: ['copy','excel','print','csv', 'pdf']
     } );
-	 
-
+	
 	 $('#productTable tbody').on( 'clickX', 'tr', function () {
 	    	
 	        if ( $(this).hasClass('selected') ) {
@@ -56,7 +55,7 @@ $(document).ready(function() {
 	            for(var i=0;i<selectedRow.length;i++){
 	            	//$('#status').html($('#status').html()+'>>>- '+selectedRow[i]);
 	            	//$('#field'+i).val(selectedRow[i]);
-	            	infoAlert(">>"+selectedRow[i]);
+	            	//infoAlert(">>"+selectedRow[i]);
 	            }
 	            
 	            //edit
@@ -68,9 +67,9 @@ $(document).ready(function() {
 			
 					//setProductDetails(,,,product.totalInStock,discount,product.totalInStock,product.size);
 		 var url = restHost+"/view/contents/product/productView.php";
-		$.get(url,{"sid":sid,"productId":productId,"productName":productName,"size":size,"purchasePrice":purchasePrice,"salePrice":salePrice,"totalInStock":totalInStock,"totalSold":totalSold,"viewMode":viewMode},
+		$.get(url,{"sid":sid,"productId":productId,"productName":productName,"size":size,"purchasePrice":purchasePrice,"salePrice":salePrice,"totalInStock":totalInStock,"totalSold":totalSold,"viewMode":viewMode,"emptySlotId":emptySlotId},
 			function(searchResult){
-			 $(emptySlotId).html(searchResult);
+			 $("#"+emptySlotId).html(searchResult);
 			});//get end
 		}//getProductView end
 	
@@ -108,14 +107,14 @@ $(document).ready(function() {
 					var searchContent = getSearchContent(searchResult,i);
 					var newRow = [searchContent,rowContent];
 					productTable.row.add(newRow).draw( false );
-					prepareProductView(p.productId,p.productName,p.size,p.purchasePrice,p.salePrice,p.totalInStock,p.totalSold,'#prod1-'+p.productId);
+					prepareProductView(p.productId,p.productName,p.size,p.purchasePrice,p.salePrice,p.totalInStock,p.totalSold,'prod1-'+p.productId);
 					emptySlotId = p.productId;
 					colIndex = colIndex+1;
 				}else if(colIndex==2){
-					prepareProductView(p.productId,p.productName,p.size,p.purchasePrice,p.salePrice,p.totalInStock,p.totalSold,'#prod2-'+emptySlotId);
+					prepareProductView(p.productId,p.productName,p.size,p.purchasePrice,p.salePrice,p.totalInStock,p.totalSold,'prod2-'+emptySlotId);
 					colIndex=colIndex+1;
 				}else if(colIndex==3){
-					prepareProductView(p.productId,p.productName,p.size,p.purchasePrice,p.salePrice,p.totalInStock,p.totalSold,'#prod3-'+emptySlotId);
+					prepareProductView(p.productId,p.productName,p.size,p.purchasePrice,p.salePrice,p.totalInStock,p.totalSold,'prod3-'+emptySlotId);
 					colIndex=1;
 				}
 				
@@ -132,7 +131,31 @@ $(document).ready(function() {
 		},"json");//get end
 	}//loadProducts end
 	
+	var rowIndex=0;
+	addToLabels = function(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold){
+		rowIndex++;
+		//errorAlert("addToLabels click function rowIndex:"+rowIndex+", productId:"+productId+" totalSold:"+totalSold+" totalInStock:"+totalInStock);
+		
+		var emptySlotId1="label"+rowIndex+"1-"+productId;
+		var emptySlotId2="label"+rowIndex+"2-"+productId;
+		var emptySlotId3="label"+rowIndex+"3-"+productId;
+		
+		var rowContent ="<div class='row'>"
+            +"<div id='"+emptySlotId1+"' class='col-lg-4'></div>"
+            +"<div id='"+emptySlotId2+"' class='col-lg-4 card'></div>"
+            +"<div id='"+emptySlotId3+"' class='col-lg-4 card'></div>"
+            +'</div>';
+		var newRow = [productId,rowContent];
+		productTable.row.add(newRow).draw( false );
+		
+		prepareProductView(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold,emptySlotId1);
+		prepareProductView(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold,emptySlotId2);
+		prepareProductView(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold,emptySlotId3);
+	}//addToLabelsTable end
+	
 	//for print label CSR will add products manually
+	if(viewMode!='printlabel'){
 	 loadProducts();
+	}
 		
 } );

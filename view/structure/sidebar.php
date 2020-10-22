@@ -44,6 +44,17 @@
           <span>Product</span></a>
       </li>
 
+     <!-- Divider -->
+     <?php $showHideItem= "";//(strpos($_SERVER['REQUEST_URI'],'product.php')?"style='display:none'":'')?>
+      <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active" <?php echo $showHideItem?>>
+        <a class="nav-link" href="printlabel.php" target="new">
+          <i class="fas fa-fw fa-barcode"></i>
+          <span>Print Labels</span></a>
+      </li>
+
       <!-- Divider -->
       <hr class="sidebar-divider" <?php echo $display;?>>
 
