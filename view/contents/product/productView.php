@@ -24,7 +24,8 @@ $fullModeControll=($viewMode!='full'?"style='display:none'":'');
 $labelModeControll=($viewMode=='printlabel'?'style="display:none"':'');
 $imagePreview=(($viewMode!='full' && $viewMode!='printlabel')?"style='width:100px;height:90px;'":"style='width:150px;height:140px;'");
 ?>
-<div class="row">
+
+<div class="row smallBox">
            <!-- Earnings (Monthly) Card Example -->
             <div class="col-xl-12 col-md-12 mb-4">
               <div class="card border-left-<?php echo ($totalInStock>0?'success':'danger'); ?> shadow h-100 py-2">
@@ -72,8 +73,8 @@ $imagePreview=(($viewMode!='full' && $viewMode!='printlabel')?"style='width:100p
                 </div>
               </div>
             </div>
+     </div>
 </div>
-
 
    <script>
    var settings = {

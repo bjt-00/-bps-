@@ -1,6 +1,18 @@
 <?php 
 $viewMode = (isset($_GET['viewMode'])?$_GET['viewMode']:'default');
 ?>
+<style>
+@media print {
+            @page {
+                margin-bottom: .5em;
+                margin-left: .5em;
+                margin-right: .5em;
+                margin-top: .5em;
+                size: A4;
+                size: portrait;
+            }
+        }
+</style>
 <input type="hidden" id="viewMode2" value="<?php echo $viewMode;?>">
 <!-- table table-bordered -->
 <table class="display cell-border compact nowrap" id="productTable2" width="100%">

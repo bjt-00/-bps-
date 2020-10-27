@@ -23,8 +23,9 @@ $(document).ready(function() {
         "info":true,
         "searching":true,
         "ordering":true,
-        "bSort" : true,
-        buttons:['print']
+        "bSort" : true
+        //dom: 'Bfrtip',
+        //buttons:['print']
     } );
 	 
 

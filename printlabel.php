@@ -22,13 +22,19 @@ include 'view/structure/header.php';
 
          <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"><?php echo $companyName;?> Labels</h1>
+            <h1 id="pageHader" class="h3 mb-0 text-gray-800"><?php echo $companyName;?> Labels</h1>
               <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#productListModal">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Add</span>
-                  </a>
+              </a>
+             <a href="#" id="printLabels" class="btn btn-secondary btn-icon-split btn-sm">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-print"></i>
+                    </span>
+                    <span class="text">Print</span>
+              </a>
           </div>
 
 		  <?php include 'view/structure/alert.php'; ?>
@@ -41,7 +47,7 @@ include 'view/structure/header.php';
             <!-- Reciept -->
             <?php 
             $_GET['viewMode']=(isset($_GET['viewMode'])?$_GET['viewMode']:'printlabel'); 
-            include 'view/contents/product/printLabel.php'; 
+             include 'view/contents/product/labelsList.php';
             ?>
  
             

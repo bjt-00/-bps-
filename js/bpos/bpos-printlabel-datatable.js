@@ -22,9 +22,9 @@ $(document).ready(function() {
         "paging":         false,
         "info":true,
         "searching":false,
-        "ordering":true,
-      //dom: "Bfrtip",
-        buttons: ['copy','excel','print','csv', 'pdf']
+        "ordering":true
+        //dom: "Bfrtip",
+        //buttons: ['copy','excel','print','csv', 'pdf']
     } );
 	
 	 $('#productTable tbody').on( 'clickX', 'tr', function () {
@@ -139,11 +139,13 @@ $(document).ready(function() {
 		var emptySlotId1="label"+rowIndex+"1-"+productId;
 		var emptySlotId2="label"+rowIndex+"2-"+productId;
 		var emptySlotId3="label"+rowIndex+"3-"+productId;
+		var emptySlotId4="label"+rowIndex+"4-"+productId;
 		
 		var rowContent ="<div class='row'>"
-            +"<div id='"+emptySlotId1+"' class='col-lg-4'></div>"
-            +"<div id='"+emptySlotId2+"' class='col-lg-4 card'></div>"
-            +"<div id='"+emptySlotId3+"' class='col-lg-4 card'></div>"
+            +"<div id='"+emptySlotId1+"' class='col-lg-3'></div>"
+            +"<div id='"+emptySlotId2+"' class='col-lg-3 card'></div>"
+            +"<div id='"+emptySlotId3+"' class='col-lg-3 card'></div>"
+            +"<div id='"+emptySlotId4+"' class='col-lg-3 card'></div>"
             +'</div>';
 		var newRow = [productId,rowContent];
 		productTable.row.add(newRow).draw( false );
@@ -151,6 +153,7 @@ $(document).ready(function() {
 		prepareProductView(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold,emptySlotId1);
 		prepareProductView(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold,emptySlotId2);
 		prepareProductView(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold,emptySlotId3);
+		prepareProductView(productId,productName,size,purchasePrice,salePrice,totalInStock,totalSold,emptySlotId4);
 	}//addToLabelsTable end
 	
 	//for print label CSR will add products manually
