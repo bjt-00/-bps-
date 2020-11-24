@@ -1,3 +1,8 @@
+ <?php 
+   $loginId = (isset($_SESSION['loginId'])?$_SESSION['loginId']:'0');
+   $clientLogo="img/companies/".$companyPrefix."/".$companyPrefix.".png";
+   $userProfilePhoto = "img/companies/".$companyPrefix."/users/".$loginId.".jpg";
+ ?>
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 		 <?php if(strpos($_SERVER['REQUEST_URI'],'pos.php')){?>
@@ -5,7 +10,7 @@
                      <img alt="Bitguider Point of Sale" src="themes/common/images/bposLogo.png">
                     </a>
                   <?php }else{?>
-                    <img class="CompanyLogo" alt="<?php echo $companyName;?>" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.png">
+                    <img class="CompanyLogo" alt="<?php echo $companyName;?>" src="<?php echo $clientLogo;?>">
            <?php }?>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -100,7 +105,7 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="img/users/<?php echo($_SESSION['loginId']);?>.png" alt="">
+                    <img class="rounded-circle" src="<?php echo $userProfilePhoto;?>" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div class="font-weight-bold">
@@ -110,7 +115,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="img/users/<?php echo($_SESSION['loginId']);?>.png" alt="">
+                    <img class="rounded-circle" src="<?php echo $userProfilePhoto;?>" alt="">
                     <div class="status-indicator"></div>
                   </div>
                   <div>
@@ -130,7 +135,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <img class="rounded-circle" src="img/users/<?php echo($_SESSION['loginId']);?>.png" alt="">
+                    <img class="rounded-circle" src="<?php echo $userProfilePhoto;?>" alt="">
                     <div class="status-indicator bg-success"></div>
                   </div>
                   <div>
@@ -148,7 +153,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['userName'];?> </span>
-                <img class="img-profile rounded-circle" src="img/users/<?php echo($_SESSION['loginId']);?>.png">
+                <img class="img-profile rounded-circle" src="<?php echo $userProfilePhoto;?>">
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -169,6 +174,11 @@
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
                 </a>
+                <a class="dropdown-item" href="#?" onclick="editProfile('<?php echo $loginId;?>')" data-toggle="modal" data-target="#userFormModal" <?php echo "";?>>
+                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                   My Profile
+                </a>
+                
               </div>
             </li>
 

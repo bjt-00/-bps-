@@ -27,6 +27,28 @@
     </div>
   </div>
       
+  <!-- User Modal-->
+  <div class="modal fade" id="userFormModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="userModalLabel">User Details</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+           <?php include 'view/contents/user/userForm.php';?>
+        </div>
+        <div class="modal-footer">
+          <input type="button" id="userFormPopupActionButton" class="btn btn-info" value="Add" >
+          <button onclick="location.reload()" class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/bpos/bpos-user-form.js"></script>
+      
          <!-- datatable -->
   <script src="js/datatables/jquery.dataTables.min.js"></script>
   <!-- script src="js/datatables/dataTables.bootstrap4.min.js"></script-->

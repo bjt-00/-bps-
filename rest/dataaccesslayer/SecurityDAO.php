@@ -48,6 +48,7 @@ class SecurityDAO{
         unset($_SESSION[AppConstants::$USER_NAME]);
         unset($_SESSION[AppConstants::$COMPANY_PREFIX]);
         unset($_SESSION[AppConstants::$COMPANY_NAME]);
+        session_destroy();
     }
     
  }

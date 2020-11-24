@@ -3,11 +3,13 @@
 //php.ini set file_uploads = On
 class FileUtils
 {
-    function upload($companyPrefix,$file,$productId){
+    function upload($companyPrefix,$uploadFolder,$file,$productId){
         $status='';
         
         //Step-I gather file properties to proceed
-        $uploadPath = "C:/wamp64/www/-bps-/img/companies/".$companyPrefix."/products/";
+        $uploadPath = "C:/wamp64/www/-bps-/img/companies/".$companyPrefix."/".$uploadFolder."/";
+        //$uploadPath = "/home/users/web/b2206/nf.thesuffahorg/public_html/bitguiders/bpos/img/companies/".$companyPrefix."/".$uploadFolder."/";
+        
         $newFileName= ($productId!=-1?$productId.".jpg":basename($file["name"]));
         $uploadPath = $uploadPath.$newFileName;
         $fileName = $file["name"];
@@ -52,10 +54,14 @@ class FileUtils
             $status= "Sorry, your file was not uploaded.";
             // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($file["tmp_name"], $uploadPath)) {
+            try{
+                if(move_uploaded_file($file["tmp_name"], $uploadPath)){
                 $status= "Product Image uploaded successfully.";
-            } else {
-                $status= "Sorry, there was an error uploading your file.";
+                }else{
+                    $status= "Sorry, there was an error uploading your file.";
+                }
+            }catch(Exception $e){
+                $status= "Sorry, there was an error uploading your file.".$e->getMessage();
             }
         }
         return $status;

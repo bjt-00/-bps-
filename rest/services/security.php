@@ -19,6 +19,5 @@ if(isset($_POST['login'])){
 }else if(isset($_SESSION['loginId'])){
     $url=$frontController->getUrlByRole($_SESSION['role']);
 }
-
     header("location:".$url);
 ?>

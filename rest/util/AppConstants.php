@@ -3,7 +3,7 @@
 class AppConstants{
     
     static $ROLE_GUEST="Guest";
-    static $ROLE_SALES_MAN="Sales Man";
+    static $ROLE_SALES_PERSON="Sales Person";
     static $ROLE_ADMIN ="Administrator";
     
     static $COMPANY_PREFIX="companyPrefix";
@@ -13,6 +13,9 @@ class AppConstants{
     static $USER_NAME="userName";
     static $USER_ROLE="role";
     static $LOGIN_ID="loginId";
+    
+    static $UPLOAD_PRODUCTS_FOLDER="products";
+    static $UPLOAD_USERS_FOLDER="users";
     
     static $ALERT_TYPE_SUCCESS="success";
     static $ALERT_TYPE_INFO="info";
@@ -33,6 +36,8 @@ class AppConstants{
     static $ACTION_ADD="Add";
     static $ACTION_UPDATE="Update";
     static $ACTION_DELETE="Delete";
+    static $ACTION_LOCK="lock";
+    static $ACTION_UNLOCK="unlock";
     
     static $REPORT_DAILY_SUMMARY="dailySummary";
     static $REPORT_MONTHLY_SUMMARY="monthlySummary";

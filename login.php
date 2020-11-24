@@ -33,10 +33,10 @@ include 'view/structure/header.php';
                     	</select>
                     </div>
                     <div class="form-group">
-                      <input type="text" name="loginId" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter login id" required="true" >
+                      <input type="text" name="loginId" class="form-control form-control-user"  aria-describedby="emailHelp" placeholder="Enter login id" required="true" autocomplete="off" >
                     </div>
                     <div class="form-group">
-                      <input type="password" name="password" class="form-control form-control-user" placeholder="Password" required="true">
+                      <input type="password" name="password" class="form-control form-control-user" placeholder="Password" required="true" autocomplete="off">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
