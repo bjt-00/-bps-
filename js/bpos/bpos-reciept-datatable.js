@@ -1,7 +1,13 @@
 // Call the dataTables jQuery plugin
+var recieptTable;
+var balance=0;
+var totalAmount=0;
+var tax=0;
+var entries=0;
+var isReturnMode=false;
 $(document).ready(function() {
 
-	var recieptTable = $('#recieptTable').DataTable( {
+	recieptTable = $('#recieptTable').DataTable( {
 		"language": {
             "lengthMenu": "Show _MENU_",
             "zeroRecords": "--Empty Reciept--",
@@ -56,10 +62,6 @@ $(document).ready(function() {
 	    } );
 	
 	//addproduct
-	var balance=0;
-	var totalAmount=0;
-	var tax=0;
-	var entries=0;
 	$("#addProduct").click(function(){
 		addProductIntoReciept($('#productId').val(),
 				$('#productName').html());
@@ -73,16 +75,24 @@ $(document).ready(function() {
 		var productSize=$("#productSize").val();
 		var discount = $("#productDiscount").val();
 		
+		var returnedProductId = $("#returnedProductId").val();
 		if(discount>0){
 		productName=productName+" [-"+productSize+(discount>0?discount:"")+"]";
 		}
+		
+		
 		var productQuantity=$("#productQuantity").val();
 		var productPrice=$("#productPrice").html();
 		var totalPrice=productQuantity*productPrice
 		
+		if(isReturnMode && (productPrice<0)){
+			productName="<span style='color:red;' title='Previous Returned Item'>"+productName+"</span>";
+		}
 		//discount= (totalPrice/100)*discount;
 		totalPrice = totalPrice-discount;
+		var totalPrice=(isReturnMode && (productId==returnedProductId) && ((productPrice+0)>0)?-totalPrice:totalPrice);
 		
+		totalAmount +=(totalPrice>0?totalPrice:0);
 		entries=entries+1;
 	    
 		var newRow = [entries+": "+productName,productQuantity,totalPrice];
@@ -92,7 +102,7 @@ $(document).ready(function() {
 		recieptTable.row.add(newRow).draw( false );
 	   // $('#recieptTable').DataTable().search( productName ).draw();
 	    
-		totalAmount +=totalPrice;
+		
 	    //tax=totalAmount*0.01;
 	    tax=0;
 	    
@@ -135,7 +145,7 @@ $(document).ready(function() {
 		$('#productPrice').html(productPrice);
 		$('#priceTag').html(productPrice);
 		$('#productQuantity').attr("max",productQuantity);
-		$('#productQuantity').val(1);
+		//$('#productQuantity').val(1);
 		$('#minQuantity').html($('#productQuantity').attr("min"));
 	    $('#maxQuantity').html(productQuantity);
 		
@@ -171,18 +181,23 @@ $(document).ready(function() {
 	$("#searchProduct").change(function(){
 		var searchText = $(this).val();
 		setProductDetails(0,"","","",0,"","");
-		
+		 var returnedProductId = $("#returnedProductId").val();
 		 var url = restApiPath+"product.php";
-			$.get(url,{"sid":sid,"search":searchText,"companyPrefix":companyPrefix},
+			$.get(url,{"sid":sid,"search":searchText,"companyPrefix":companyPrefix,"returnedProductId":returnedProductId},
 			function(searchResult){
 				$.each(searchResult,function(i,product){
 					
 					var discount= (product.salePrice-product.purchasePrice);
 					 
+					var totalPrice=product.salePrice;
+					totalPrice = (isReturnMode && ((product.productId==returnedProductId) && totalPrice>0)?-totalPrice:totalPrice);
+					var quantity = (isReturnMode?$("#productQuantity").val():1);
 					//sit product details
-					setProductDetails(product.productId,product.productName,product.salePrice,product.totalInStock,discount
+					setProductDetails(product.productId,product.productName,totalPrice,product.totalInStock,discount
 							,product.totalInStock,product.size);
 					 
+					$("#productQuantity").val(quantity);
+					
 					//add product into reciept
 					var isAutoMode=$("#autoAddMode").prop("checked");
 					if(isAutoMode && product.totalInStock>0){
@@ -209,8 +224,17 @@ $(document).ready(function() {
     $('#deleteRecieptItem').click( function () {
     	//var selectedCaseId = $('#selectedCaseId').val();
     	//var selectedCaseTitle = $('#selectedCaseTitle').val();
-    	totalAmount -= selectedRow[2];
+   		totalAmount -= selectedRow[2];
+   		
     	$("#totalAmount").html(totalAmount);
+    	
+    	if(isReturnMode){
+    		recieptDetails.totalAmount -=selectedRow[2];
+    		recieptDetails.entries -=selectedRow[1];  
+    		var selectedRowIndex = recieptTable.row('.selected').index();
+    		recieptDetails.recieptProducts.splice(selectedRowIndex,1);
+    		
+    	}
 
     	entries -= 1;
     	$("#entries").html(entries);

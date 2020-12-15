@@ -3,7 +3,8 @@
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary"></h6>
-                  <input type="text" id="searchProduct" value="" class="form-control" placeholder="Search Product"  />
+                     <input type="text" id="searchReciept" value="" class="form-control" placeholder="Search Reciept"  />
+                     <input type="text" id="searchProduct" value="" class="form-control" placeholder="Search Product"  />
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -28,6 +29,7 @@
                             		   <img id="productImage" alt="" class="pull-center" src="themes/common/images/0.png" width="200" height="200"  >
                             		   <span id="priceTag" class="badge badge-danger badge-counter"></span>
                             		   <input type="hidden" id="productId" value="0">
+                            		   <input type="hidden" id="returnedProductId" value="-1">
                             		</td>
                             	</tr>
                             	<tr>

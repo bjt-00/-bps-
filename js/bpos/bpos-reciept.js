@@ -1,4 +1,4 @@
-	var recieptDetails = {"entries":0,"tax":0,"totalAmount":0,"cashRecieved":0,"balance":0,"customerId":"Guest","recieptProducts":[]};
+	var recieptDetails = {"transactionId":-1,"entries":0,"tax":0,"totalAmount":0,"cashRecieved":0,"balance":0,"customerId":"Guest","recieptProducts":[]};
 
 // Call the dataTables jQuery plugin
 $(document).ready(function() {
@@ -33,6 +33,7 @@ $(document).ready(function() {
 		var recieptWidth2 = recieptWidth+"font-size:16px;";
 		recieptWidth = recieptWidth+"font-size:18px;";
 		
+		$("#recieptDiv").attr("style",recieptWidth2);
 		$("#recieptHeader").attr("style",recieptWidth2);
 		$("#recieptAddress").attr("style",recieptWidth2);
 		$("#recieptPhone").attr("style",recieptWidth2);
@@ -64,3 +65,57 @@ function addToReciept(productId){
 	$("#searchProduct").val(productId);
 	$("#searchProduct").change();
 }
+
+function resetReciept(){
+	recieptTable.rows().remove().draw( false );
+	recieptDetails.transactionId=-1;
+	$("#returnedProductId").val(-1);
+	balance=0;
+	totalAmount=0;
+	tax=0;
+	entries=0;
+	$("#totalAmount").html(totalAmount);
+    $("#entries").html(entries);
+    $('#balance').html(balance);
+    $("#productPrice").html(0);
+	var transactionId ="000";
+	  $('#transactionId').html(transactionId);
+	  $("#transactionIdBarcode").html("").show().barcode(transactionId,"datamatrix");
+	  
+}
+$("#searchReciept").change(function(){
+	isReturnMode=true;
+	resetReciept();//clear existing reciept
+	
+	var searchText = $(this).val();
+	$(this).val("");
+	
+	 var url = restServicesPath+"reciept.php";
+		$.get(url,{"sid":sid,"search":searchText,"companyPrefix":companyPrefix},
+		function(searchResult){
+			$("#recieptDescription").show();
+			$("#recieptDescription").html("Return Following Items!");
+			$.each(searchResult,function(i,recieptItem){
+				
+				if(recieptItem.price<0){
+					$("#returnedProductId").val(recieptItem.productId);
+				}else{
+					$("#returnedProductId").val(-1);
+					$("#productQuantity").val(1);
+				}
+				$("#productQuantity").val(recieptItem.quantity);
+				
+				addToReciept(recieptItem.productId);
+				recieptDetails.transactionId=recieptItem.transactionId;
+				
+				var transactionId =recieptItem.transactionId+"";
+				  $('#transactionId').html(transactionId);
+				  $("#transactionIdBarcode").html("").show().barcode(transactionId,"datamatrix");
+
+				  
+			});
+
+		},"json");
+		
+	$(this).focus();
+});

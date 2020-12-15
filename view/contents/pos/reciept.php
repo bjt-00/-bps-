@@ -1,5 +1,5 @@
  
- <div class="col-xl-5 col-lg-7 card card-body">
+ <div id="recieptDiv" class="col-xl-5 col-lg-7 card card-body">
 
  <div id="recieptHeader" style="display:block">
  <div id="recieptHeader" >
@@ -26,12 +26,15 @@
  		</td>
  	</tr>
  </table>
-<div id="recieptBarCode"><center><div id="transactionIdBarcode"></div></center></div>
+<div id="recieptBarCode"><center>
+<div id="transactionIdBarcode"></div>
+<span id="recieptDescription" style="color:red;display:none"></span>
+</center></div>
 
 </div>
                        <!-- Page Wrapper -->
                       <div id="content" class="print">
-                    
+                    		
                               <!-- DataTales Example -->
                     
                                     <table class="cell-border" id="recieptTable" width="100%" heith="100%" cellspacing="0">
