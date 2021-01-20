@@ -28,7 +28,7 @@ if(isset($_GET[AppConstants::$COMPANY_PREFIX]) || isset($_POST[AppConstants::$CO
             
             if(isset($_FILES['productImage']) && $_FILES['productImage']['name']!=''){
             $fileUtils = new FileUtils();
-            $response .= $fileUtils->upload($companyPrefix,$_FILES['productImage'],$productService->getProductId());
+            $response .= $fileUtils->upload($companyPrefix,AppConstants::$UPLOAD_PRODUCTS_FOLDER,$_FILES['productImage'],$productService->getProductId());
             }
             echo $response;
             $_SESSION[AppConstants::$ALERT_TYPE_INFO]=$response;

@@ -157,7 +157,7 @@ $(document).ready(function() {
 	    $('#discount').html(" - 0");
 	    $('#productQuantity').attr("max",productQuantity);
 	    $('#productSize').html(productSize);
-	    var productImage =productImagesPath+productId+".jpg";
+	    var productImage =productImagesPath+productId+".png";
 	    
 	    //out of stock
 	    if(productQuantity<=0){

@@ -6,9 +6,10 @@ $(document).ready(function() {
 		 var url = restServicesPath+"company.php";
 			$.get(url,{"sid":sid},
 			function(searchResult){
+				$("#companyPrefix").empty();
 				$.each(searchResult,function(i,company){
 					var option = "<option value='"+company.companyPrefix+"'>"+company.companyName+"</option>";
-					$("#companyPrefix").empty().append(option);
+					$("#companyPrefix").append(option);
 				});
 
 			},"json");

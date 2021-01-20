@@ -28,6 +28,14 @@ class UserService
         }else{
             $status = $userDAO->add($companyPrefix,$loginId,$storeId,$role,$email,$firstName,$lastName,$password,$phone);
             $this->userId=$userDAO->getProductId();
+            
+            //also create admin account for new companies
+            if(isset($_SESSION[AppConstants::$ACTION_ACTIVATED])){
+                $loginId="admin";
+                $role=AppConstants::$ROLE_ADMIN;
+                $password=$companyPrefix.$loginId;
+                $userDAO->add($companyPrefix,$loginId,$storeId,$role,$email,$firstName,$lastName,$password,$phone);
+            }
         }
         
         return $status;

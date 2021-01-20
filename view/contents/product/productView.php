@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $productId = (isset($_GET['productId'])?$_GET['productId']:'000');
 $productName = (isset($_GET['productName'])?$_GET['productName']:'');
 $size = (isset($_GET['size'])?$_GET['size']:'');
@@ -32,7 +32,7 @@ $imagePreview=(($viewMode!='full' && $viewMode!='printlabel')?"style='width:100p
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <img id="productImage" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/products/<?php echo $productId;?>.jpg" <?php echo $imagePreview;?>  >
+                      <img id="productImage" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/products/<?php echo $productId;?>.png" <?php echo $imagePreview;?>  >
                     </div>
                     <?php echo (($viewMode=='full' || $viewMode=='printlabel')?'':'</div>');//for compact view keep barcode in second row?>
                     <div class="col-auto" >

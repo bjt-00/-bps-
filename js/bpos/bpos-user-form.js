@@ -13,7 +13,14 @@ $(document).ready(function(){
 	        success: function(returnval) {
 	             successAlert(returnval);
 	             $("#userFormModal").modal("hide");
-	             setTimeout(location.reload(),9000);
+	             
+	             var requestType= $("#requestType").val();
+	             if(requestType=='activate'){
+	            	 window.location="login.php";
+	             }else{
+	            	 setTimeout(location.reload(),9000);
+	             }
+	             
 	         }
 	    });//end post call
 		
@@ -52,7 +59,7 @@ function editUser(loginId,firstName,lastName,role,storeId,email,status,phone){
 	$("#email").val(email);
 	$("#phone").val(phone);
 	$("#password").val("");
-	$("#userImagePreview").attr("src","img/companies/"+companyPrefix+"/users/"+loginId+".jpg");
+	$("#userImagePreview").attr("src","img/companies/"+companyPrefix+"/users/"+loginId+".png");
 }
 
 function lockAccount(loginId){

@@ -48,9 +48,9 @@ include 'view/structure/header.php';
                     <hr>
                   </form>
                   
-                  <div class="text-center" style="display:none">
+                  <div class="text-center">
                     <a class="small" href="forgot-password.html">Forgot Password?</a> | 
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="register.php">Register Now!</a>
                   </div>
                 </div>
               </div>

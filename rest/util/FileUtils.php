@@ -3,15 +3,20 @@
 //php.ini set file_uploads = On
 class FileUtils
 {
-    function upload($companyPrefix,$uploadFolder,$file,$productId){
+    function upload($companyPrefix,$uploadFolder,$file,$uploadFileName){
         $status='';
         
-        //Step-I gather file properties to proceed
-        $uploadPath = "C:/wamp64/www/-bps-/img/companies/".$companyPrefix."/".$uploadFolder."/";
-        //$uploadPath = "/home/users/web/b2206/nf.thesuffahorg/public_html/bitguiders/bpos/img/companies/".$companyPrefix."/".$uploadFolder."/";
+        //$uploadPath= "C:/wamp64/www/-bps-/img/companies/".$companyPrefix;
+        $uploadPath = "/home/users/web/b2206/nf.thesuffahorg/public_html/bitguiders/bpos/img/companies/".$companyPrefix;
+
+        $this->createFolder($uploadPath);
         
-        $newFileName= ($productId!=-1?$productId.".jpg":basename($file["name"]));
-        $uploadPath = $uploadPath.$newFileName;
+        //Step-I gather file properties to proceed
+        $uploadPath .= ($uploadFolder==AppConstants::$UPLOAD_COMPANY_LOGO ?"/":"/".$uploadFolder."/");
+        $this->createFolder($uploadPath);
+                
+        $newFileName= ($uploadFileName!=-1?$uploadFileName.".png":basename($file["name"]));
+        $uploadPath .= $newFileName;
         $fileName = $file["name"];
         
         $fileSize = $file["size"];
@@ -56,7 +61,7 @@ class FileUtils
         } else {
             try{
                 if(move_uploaded_file($file["tmp_name"], $uploadPath)){
-                $status= "Product Image uploaded successfully.";
+                $status= "Selected file uploaded successfully.";
                 }else{
                     $status= "Sorry, there was an error uploading your file.";
                 }
@@ -66,6 +71,12 @@ class FileUtils
         }
         return $status;
     }//upload method end
+    
+    function createFolder($uploadPath){
+        if(!file_exists($uploadPath)){
+            mkdir($uploadPath);
+        }
+    }
 }
 
 ?>

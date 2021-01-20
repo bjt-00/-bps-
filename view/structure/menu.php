@@ -1,7 +1,7 @@
  <?php 
    $loginId = (isset($_SESSION['loginId'])?$_SESSION['loginId']:'0');
    $clientLogo="img/companies/".$companyPrefix."/".$companyPrefix.".png";
-   $userProfilePhoto = "img/companies/".$companyPrefix."/users/".$loginId.".jpg";
+   $userProfilePhoto = "img/companies/".$companyPrefix."/users/".$loginId.".png";
  ?>
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -9,8 +9,10 @@
 		 			<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                      <img alt="Bitguider Point of Sale" src="themes/common/images/bposLogo.png">
                     </a>
-                  <?php }else{?>
+                  <?php }else {?>
+                  <a class="nav-link" href="#?" onclick="editCompany('<?php echo $companyPrefix;?>')" data-toggle="modal" data-target="#companyFormModal">
                     <img class="CompanyLogo" alt="<?php echo $companyName;?>" src="<?php echo $clientLogo;?>">
+                  </a>
            <?php }?>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -151,8 +153,9 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
+              
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['userName'];?> </span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['userName'];?><br>( <?php echo $_SESSION['role'];?> ) </span>
                 <img class="img-profile rounded-circle" src="<?php echo $userProfilePhoto;?>">
               </a>
               <!-- Dropdown - User Information -->

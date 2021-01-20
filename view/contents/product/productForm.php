@@ -41,7 +41,7 @@ $totalSold = (isset($_GET['totalSold'])?$_GET['totalSold']:'0'); */
     </div>
 </div>
 <div class="form-group">
-	<img id="productImagePreview" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/products/0.jpg" width="150" height="140"  >
+	<img id="productImagePreview" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/products/0.png" width="150" height="140"  >
 	<input type="file" id="productImage" name="productImage" class="form-control" >
 </div>
 </form>

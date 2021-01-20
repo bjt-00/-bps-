@@ -69,8 +69,14 @@
            .$dataaccess->sqlInjectionFilter($salePrice).","
            ."'".$dataaccess->sqlInjectionFilter($size)."')";
            $this->productId =$dataaccess->executeQuery($query);
+           
            if($this->productId==0){
-               $this->productId=$productName;
+               
+               $product = $this->getProductByName($companyPrefix, $productName);
+               $json = new JSONConverter();
+               $product = $json->jsonDecode($product);
+               
+               $this->productId=$product[0]['productId'];
            }
            $status="Griven product saved successfully.";
            //$status =$status.'<br>'.$query;

@@ -97,7 +97,7 @@ $(document).ready(function() {
 					
 				var csvUserParams="'"+u.userId+"','"+u.firstName+"','"+u.lastName+"','"+u.role+"','"+u.storeId+"','"+u.email+"',"+u.status+","+u.phone;
     
-                var userProfilePhoto = "img/companies/"+companyPrefix+"/users/"+u.userId+".jpg";
+                var userProfilePhoto = "img/companies/"+companyPrefix+"/users/"+u.userId+".png";
                 userProfilePhoto ="<img class=\"rounded-circle\" src=\""+userProfilePhoto+"\" alt=\"\" style=\"width:25px;height:25px\">";
  
                 var editButton ="<a id=\""+u.userId+"-edit\" title=\"Edit\" href=\"#\" onclick=\"editUser("+csvUserParams+")\" class=\"editUser btn btn-"+(u.status==1?"success":"danger")+" btn-circle btn-sm\" data-toggle=\"modal\" data-target=\"#userFormModal\">"

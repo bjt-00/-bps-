@@ -1,5 +1,6 @@
 <?php 
 $companyPrefix = (isset($_SESSION['companyPrefix'])?$_SESSION['companyPrefix']:'default');
+$requestType = (isset($_SESSION['activate'])?'activate':'default');
 
 /* $productId = (isset($_GET['productId'])?$_GET['productId']:'000');
 $productName = (isset($_GET['productName'])?$_GET['productName']:'');
@@ -13,6 +14,7 @@ $totalSold = (isset($_GET['totalSold'])?$_GET['totalSold']:'0'); */
 <form id="userForm" enctype="multipart/form-data" >
 	<input type="hidden" id="userFormCompanyPrefix" name="companyPrefix" value="<?php echo $companyPrefix;?>" class="form-control" placeholder="Product Bar Code">
 	<input type="hidden" name="action" id="userFormAction" value="Add">
+	<input type="hidden" name="requestType" id="requestType" value="<?php echo $requestType;?>">
 <div class="form-group row">
     <div class="col-sm-6">
       <input type="text" id="loginId" name="loginId" value="" class="form-control" placeholder="Login Id" required="required" autocomplete="off">
@@ -54,7 +56,7 @@ $totalSold = (isset($_GET['totalSold'])?$_GET['totalSold']:'0'); */
 </div>
 
 <div class="form-group">
-	<img id="userImagePreview" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/users/0.jpg" width="150" height="140"  >
+	<img id="userImagePreview" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/users/0.png" width="150" height="140"  >
 	<input type="file" id="userImage" name="userImage" class="form-control" >
 </div>
 </form>

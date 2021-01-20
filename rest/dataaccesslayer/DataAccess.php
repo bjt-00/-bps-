@@ -1,7 +1,7 @@
  <?php 
  class DataAccess{
      
-     
+     	
    	public $host = "localhost";
    	public $user ="root";
    	public $password  ="";
@@ -34,8 +34,13 @@
    	function executeQuery($query){
    		//mysql_query("set names utf8");
    		$db = new mysqli($this->host,$this->user,$this->password,$this->db);
+   		try {
    		$db->multi_query($query);
    		return $db->insert_id;
+   		}catch (Exception $ex){
+   		    $_SESSION[AppConstants::$ALERT_TYPE_ERROR]=$ex->getMessage();
+   		}
+   		return -1;
   	}
  	function getSize($resultset){
  		return mysql_num_rows($resultset);
@@ -74,6 +79,10 @@
    function getTableStore($companyPrefix){
        return $this->formatTableName($companyPrefix, AppConstants::$TABLE_STORE);
    }
+
+   function getTableCompany(){
+       return AppConstants::$TABLE_COMPANY;
+   }
    
    function formatTableName($companyPrefix,$tableName){
        if($companyPrefix==""){
@@ -83,5 +92,12 @@
        }
    }
    
+   function getClientTablesList(){
+       $clientTables=array(AppConstants::$TABLE_USER,AppConstants::$TABLE_PRODUCT,
+       AppConstants::$TABLE_SALE_TRANSACTION,
+       AppConstants::$TABLE_SALE_TRANSACTION_DETAIL,
+       AppConstants::$TABLE_STORE);
+       return $clientTables;
+   }
  }
  

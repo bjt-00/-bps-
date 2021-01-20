@@ -19,5 +19,15 @@ class StoreDAO {
         $result = $dataaccess->getResult($query);
         return $json->jsonEncode($result);
     }
+    
+    function add($companyPrefix,$companyId,$storeName,$storeAddress,$storePhone,$isActive){
+        $dataaccess = new DataAccess();
+        $tableName = $dataaccess->getTableStore($companyPrefix);
+        $query ="insert into ".$tableName." values(NULL, '".$companyId."', '".$storeName."', '".$storeAddress."', '".$storePhone."', '".$isActive."')";
+        //echo $query;
+        $status=$dataaccess->executeQuery($query);
+        
+        return $status;
+    }
 }
 ?>

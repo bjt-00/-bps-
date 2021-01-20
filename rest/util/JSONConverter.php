@@ -11,6 +11,13 @@ class JSONConverter{
         }
         return json_encode($outp);
     }
+    
+    function jsonDecode($jsonObject){
+        if(null!=$jsonObject){
+            return json_decode($jsonObject,true);
+        }
+        return $jsonObject;
+    }
 }
 
 ?>

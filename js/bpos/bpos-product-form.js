@@ -50,5 +50,5 @@ function editProduct(productId,productName,size,purchasePrice,salePrice,totalInS
 	$("#purchasePrice").val(purchasePrice);
 	$("#salePrice").val(salePrice);
 	$("#noOfItems").val(totalInStock);
-	$("#productImagePreview").attr("src","img/companies/"+companyPrefix+"/products/"+productId+".jpg");
+	$("#productImagePreview").attr("src","img/companies/"+companyPrefix+"/products/"+productId+".png");
 }
