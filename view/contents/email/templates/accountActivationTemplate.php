@@ -32,7 +32,7 @@
 			  <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.
 			 </p>
 			</p>
-			 <a href="http://localhost/-bps-/rest/services/company.php?cac=<COMPANY_ACTIVATION_CODE>" target="_new" style="background-color:rgb(231,118,28);color:white;border:8px solid rgb(231,118,28);height:150px;width:230px;font-family:verdana;text-decoration:none">
+			 <a href="http://www.bitguiders.com/bpos/rest/services/company.php?cac=<COMPANY_ACTIVATION_CODE>" target="_new" style="background-color:rgb(231,118,28);color:white;border:8px solid rgb(231,118,28);height:150px;width:230px;font-family:verdana;text-decoration:none">
 			 Activate Account
 			 </a>
 			</p>

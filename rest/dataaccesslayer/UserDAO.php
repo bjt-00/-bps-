@@ -11,6 +11,7 @@
             $dataaccess = new DataAccess();
             
             $searchText = $dataaccess->sqlInjectionFilter($searchText);
+            $companyPrefix = $dataaccess->sqlInjectionFilter($companyPrefix);
             
             $tableName = $dataaccess->getTableUser($companyPrefix);
             $storeTable = $dataaccess->getTableStore($companyPrefix);
@@ -40,7 +41,7 @@
              return $json->jsonEncode($result);
         }
         
-        function getUserList($companyPrefix){
+        function getUserList($companyPrefix,$logedinId){
             $dataaccess = new DataAccess();
             $json = new JSONConverter();
             
@@ -49,7 +50,8 @@
             $query ="select user_id userId,first_name firstName,last_name lastName,
              email ,phone,role,s.store_id storeId,s.store_name storeName, last_login_date lastLoginDate,u.is_active status 
              from ".$tableName." u ".
-             "join ".$storeTable." s on s.store_id=u.store_id";
+             "join ".$storeTable." s on s.store_id=u.store_id"
+             ." where u.role!='".AppConstants::$ROLE_ADMIN."' and u.user_id!='".$logedinId."'";
              //echo $query;
              $result = $dataaccess->getResult($query);
              return $json->jsonEncode($result);
@@ -140,7 +142,7 @@
                     return $status;
         }
         
-        function getProductId(){
+        function getUserId(){
             return $this->userId;
         }
     }

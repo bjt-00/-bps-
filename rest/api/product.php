@@ -11,10 +11,10 @@ if(isset($_GET[AppConstants::$COMPANY_PREFIX]) || isset($_POST[AppConstants::$CO
         $_GET[AppConstants::$COMPANY_PREFIX]:$_POST[AppConstants::$COMPANY_PREFIX]);
        $productService = new ProductService();
 
-        if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]!="*"){// && $securityService->isAuthentic()){
+        if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]!=AppConstants::$SEARCH_ALL){// && $securityService->isAuthentic()){
             echo $productService->search($companyPrefix,$_GET[AppConstants::$SEARCH]);
             
-        }else if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]=="*"){
+        }else if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]==AppConstants::$SEARCH_ALL){
             echo $productService->getProductList($companyPrefix);
         }else if(isset($_POST[AppConstants::$ACTION])&& isset($_POST[AppConstants::$ACTION])){
             $response='';

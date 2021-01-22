@@ -41,8 +41,7 @@ $totalSold = (isset($_GET['totalSold'])?$_GET['totalSold']:'0'); */
     </div>
     <div class="col-sm-6">
 	<select id="userFormStoreId" name="storeId" class="form-control">
-		<option value="1">Savoy Arcade F-11 Markaz, Islamabad,Pakistan</option>
-		<option value="1">Abeera Garments,Haripur Branch 1</option>
+		<option value="1">Default Store</option>
 	</select>
     </div>
 </div>

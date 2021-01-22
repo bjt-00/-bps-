@@ -15,7 +15,7 @@ class SecurityDAO{
         $tableCompany=$dataaccess->getTableCompany();
         
         $query="select u.user_id as userId,u.role,u.first_name as firstName,u.last_name as lastName"
-            .",u.store_id as storeId "
+            .",c.company_id as companyId,u.store_id as storeId "
             .",CASE WHEN c.is_active=0 THEN CONCAT(c.company_name,' - [ Inactive ]') "
             ." WHEN c.is_active=1 THEN CONCAT(c.company_name,' - [ Trial ]') "
             ."ELSE c.company_name end companyName"
@@ -45,6 +45,7 @@ class SecurityDAO{
         $_SESSION[AppConstants::$USER_ROLE] = $user->role;
         $_SESSION[AppConstants::$USER_NAME]= $user->firstName." ".$user->lastName;
         $_SESSION[AppConstants::$STORE_ID]= $user->storeId;
+        $_SESSION[AppConstants::$COMPANY_ID]= $user->companyId;
         $_SESSION[AppConstants::$ALERT_TYPE_SUCCESS] = "Welcome ".$_SESSION['userName'];
         $_SESSION[AppConstants::$COMPANY_PREFIX]=$companyPrefix;
         $_SESSION[AppConstants::$COMPANY_NAME]=$user->companyName;//$company->company_name;

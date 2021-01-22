@@ -9,8 +9,9 @@ class UserService
     }
     
     function getUserList($companyPrefix){
+        $loggedinId = $_SESSION[AppConstants::$LOGIN_ID];
         $userDAO = new UserDAO();
-        return $userDAO->getUserList($companyPrefix);
+        return $userDAO->getUserList($companyPrefix,$loggedinId);
     }
     
     function add($companyPrefix,$loginId,$storeId,$role,$email,$firstName,$lastName,$password,$phone){

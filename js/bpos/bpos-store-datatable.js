@@ -2,10 +2,10 @@
 $(document).ready(function() {
 	var viewMode = $("#viewMode").val();
 	
-	var userTable = $('#userTable').DataTable( {
+	var storeTable = $('#storeTable').DataTable( {
 		"language": {
             "lengthMenu": "Show _MENU_",
-            "zeroRecords": "--Empty Product List--",
+            "zeroRecords": "--Empty Store List--",
              "info": "Page: _PAGE_/_PAGES_ ,Total Records: _MAX_",
             "infoEmpty": "No records available",
             "infoFiltered": "(Total of _MAX_ Records)",
@@ -29,7 +29,7 @@ $(document).ready(function() {
     } );
 	 
 
-	 $('#userTable tbody').on( 'clickX', 'tr', function () {
+	 $('#storeTable tbody').on( 'clickX', 'tr', function () {
 	    	
 	        if ( $(this).hasClass('selected') ) {
 	            $(this).removeClass('selected');
@@ -38,7 +38,7 @@ $(document).ready(function() {
 	            $('#modalTitle').html("");
 	        }
 	        else {
-	            userTable.$('tr.selected').removeClass('selected');
+	            storeTable.$('tr.selected').removeClass('selected');
 	            $(this).addClass('selected');
 	            $('#selectedCauseId').val(this.id);
 	            
@@ -52,7 +52,7 @@ $(document).ready(function() {
 	            
 	            
 	            //$('#edit').show();
-	            var selectedRow = userTable.row(this).data();
+	            var selectedRow = storeTable.row(this).data();
 	            //$('#status').html('>>> '+selectedRow[1]);
 	            for(var i=0;i<selectedRow.length;i++){
 	            	//$('#status').html($('#status').html()+'>>>- '+selectedRow[i]);
@@ -64,11 +64,11 @@ $(document).ready(function() {
 	        }
 	    } );
 	
-	 function prepareProductView(userId,firstName,lastName,role,userPhone,userEmail,storeId,storeName,status,emptySlotId){
+	 function prepareStoreView(companyId,storeId,storeName,storeAddress,storePhone,managerName,managerPhone,managerEmail,status,emptySlotId){
 		   // $('#recieptTable').DataTable().search( userName ).draw();
 					//setProductDetails(,,,product.userEmail,discount,product.userEmail,product.role);
-		 var url = restHost+"/view/contents/user/userView.php";
-		$.get(url,{"sid":sid,"userId":userId,"firstName":firstName,"lastName":lastName,"role":role,"userPhone":userPhone,"storeId":storeId,"storeName":storeName,"userEmail":userEmail,"status":status,"viewMode":viewMode},
+		 var url = restHost+"/view/contents/store/storeView.php";
+		$.get(url,{"sid":sid,"companyId":companyId,"storeId":storeId,"storeName":storeName,"storeAddress":storeAddress,"storePhone":storePhone,"managerName":managerName,"managerPhone":managerPhone,"managerEmail":managerEmail,"status":status,"viewMode":viewMode},
 			function(searchResult){
 			 $(emptySlotId).html(searchResult);
 			});//get end
@@ -76,51 +76,50 @@ $(document).ready(function() {
 	
 	function getSearchContent(searchResult,i) {
 		var searchContent='';
-		if(i<searchResult.length){var p1 = searchResult[i];searchContent +=p1.userName+","+p1.userId+",";}
+		if(i<searchResult.length){var p1 = searchResult[i];searchContent +=p1.userName+","+p1.storeId+",";}
 		//append send item for search
-		if(i+1<searchResult.length){var p2 = searchResult[i+1];searchContent +=p2.userName+","+p2.userId+",";}
+		if(i+1<searchResult.length){var p2 = searchResult[i+1];searchContent +=p2.userName+","+p2.storeId+",";}
 		//append third item for search
-		if(i+2<searchResult.length){var p3 = searchResult[i+2];searchContent +=p3.userName+","+p3.userId;}
+		if(i+2<searchResult.length){var p3 = searchResult[i+2];searchContent +=p3.userName+","+p3.storeId;}
 		return searchContent;
 	}
 	
-	function loadUsers(){
+	function loadStores(){
 	   // $('#recieptTable').DataTable().search( userName ).draw();
 		
 				//setProductDetails(,,,product.userEmail,discount,product.userEmail,product.role);
-	 var url = restServicesPath+"user.php";
+	 var url = restServicesPath+"store.php";
 	 var colIndex=1;
 	 var emptySlotId;
 	 var rowIndex=0;
 	$.get(url,{"sid":sid,"search":"*","companyPrefix":companyPrefix},
 		function(searchResult){
-			$.each(searchResult,function(i,u){
-				var userName = u.firstName+" "+u.lastName;
-				 //var newRow = [u.userId,u.firstName,u.lastName,u.role,u.storeName,3,2,1];
+			$.each(searchResult,function(i,s){
+				 //var newRow = [s.storeId,s.storeName,s.storeAddress,s.storeAddress,u.storeName,3,2,1];
 				var rowContent ="<div class='row'>"
-	                 +"<div id='user1-"+u.userId+"' class='col-lg-4'></div>"
-	                 +"<div id='user2-"+u.userId+"' class='col-lg-4 card'></div>"
-	                 +"<div id='user3-"+u.userId+"' class='col-lg-4 card'></div>"
+	                 +"<div id='store1-"+s.storeId+"' class='col-lg-4'></div>"
+	                 +"<div id='store2-"+s.storeId+"' class='col-lg-4 card'></div>"
+	                 +"<div id='store3-"+s.storeId+"' class='col-lg-4 card'></div>"
 	                 +'</div>';
 				
 				
 				if(colIndex==1){
 					var searchContent = getSearchContent(searchResult,i);
 					var newRow = [searchContent,rowContent];
-					userTable.row.add(newRow).draw( false );
-					prepareProductView(u.userId,u.firstName,u.lastName,u.role,u.phone,u.email,u.storeId,u.storeName,u.status,'#user1-'+u.userId);
-					emptySlotId = u.userId;
+					storeTable.row.add(newRow).draw( false );
+					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,'#store1-'+s.storeId);
+					emptySlotId = s.storeId;
 					colIndex = colIndex+1;
 				}else if(colIndex==2){
-					prepareProductView(u.userId,u.firstName,u.lastName,u.role,u.phone,u.email,u.storeId,u.storeName,u.status,'#user2-'+emptySlotId);
+					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,'#store2-'+emptySlotId);
 					colIndex=colIndex+1;
 				}else if(colIndex==3){
-					prepareProductView(u.userId,u.firstName,u.lastName,u.role,u.phone,u.email,u.storeId,u.storeName,u.status,'#user3-'+emptySlotId);
+					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,'#store3-'+emptySlotId);
 					colIndex=1;
 				}
 				
 				searchContent = $("#search-"+emptySlotId).html();
-				searchContent +=userName+",";
+				searchContent +=s.storeName+",";
 				$("#search-"+emptySlotId).html(searchContent);
 				
 			});//for end
@@ -133,6 +132,6 @@ $(document).ready(function() {
 	}//loadUsers end
 	
 	//for print label CSR will add products manually
-	 loadUsers();
+	 loadStores();
 		
 } );

@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 include '../util/AppConstants.php';
 include '../businesslayer/UserService.php';
 //include '../businesslayer/SecurityService.php';
@@ -14,10 +14,10 @@ if(isset($_GET[AppConstants::$COMPANY_PREFIX]) || isset($_POST[AppConstants::$CO
         $_GET[AppConstants::$COMPANY_PREFIX]:$_POST[AppConstants::$COMPANY_PREFIX]);
        $userService = new UserService();
 
-        if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]!="*"){// && $securityService->isAuthentic()){
+        if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]!=AppConstants::$SEARCH_ALL){// && $securityService->isAuthentic()){
             echo $userService->search($companyPrefix,$_GET[AppConstants::$SEARCH]);
             
-        }else if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]=="*"){
+        }else if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]==AppConstants::$SEARCH_ALL){
             echo $userService->getUserList($companyPrefix);
         }else if(isset($_POST[AppConstants::$ACTION])){
             session_start();

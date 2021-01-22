@@ -111,5 +111,6 @@ function editProfile(loginId){
 				});//for end
 				
 			},"json");//get end
-	
+	$("#role").show();
+	$("#userFormStoreId").show();
 }//unlockAccount

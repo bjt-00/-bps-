@@ -7,8 +7,8 @@ class CompanyDAO{
         $dataaccess = new DataAccess();
         
         $query = "select company_prefix as companyPrefix"
-        .",CASE WHEN is_active=0 THEN CONCAT(company_name,' - [ Inactive ]') "
-        ." WHEN is_active=1 THEN CONCAT(company_name,' - [ Trial ]') "
+        .",CASE WHEN is_active=".AppConstants::$STATUS_INACTIVE." THEN CONCAT(company_name,' - [ Inactive ]') "
+        ." WHEN is_active=".AppConstants::$STATUS_TRIAL." THEN CONCAT(company_name,' - [ Trial ]') "
         ."ELSE company_name end companyName"
         ." from company order by company_name";
         
@@ -105,7 +105,7 @@ class CompanyDAO{
         $companyId = $dataaccess->sqlInjectionFilter($companyId);
         $companyEmail = $dataaccess->sqlInjectionFilter($companyEmail);
         
-        $query = "update company set is_active=1 where "
+        $query = "update company set is_active=".AppConstants::$STATUS_TRIAL." where "
             ."company_id='".$companyId."' and "
             ."company_email='".$companyEmail."';";
         //echo $query;

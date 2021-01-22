@@ -36,6 +36,7 @@ class AppConstants{
     static $TABLE_COMPANY="company";
     
     static $SEARCH="search";
+    static $SEARCH_ALL="*";
     static $MESSAGE_FORBIDDEN='{"message":"Request Forbidden"}';
     static $MESSAGE_BAD_REQUEST='{"message":"Bad Request, Check if required params is missing."}';
     
@@ -52,5 +53,9 @@ class AppConstants{
     static $REPORT_MONTHLY_SUMMARY="monthlySummary";
     static $REPORT_ANNUAL_SUMMARY="annualSummary";
     static $REPORT_ANNUAL_SUMMARY_BY_MONTH="annualSummaryByMonth";
+    
+    static $STATUS_ACTIVE=1;
+    static $STATUS_INACTIVE=0;
+    static $STATUS_TRIAL=2;
 }
 ?>

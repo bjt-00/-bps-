@@ -2,11 +2,11 @@
 $viewMode = (isset($_GET['viewMode'])?$_GET['viewMode']:'default');
 ?>
 <input type="hidden" id="viewMode" value="<?php echo $viewMode;?>">
-<table class="table table-bordered" id="userTable" width="100%">
+<table class="table table-bordered" id="storeTable" width="100%">
     <thead>
         <tr>
-            <th>User Name</th>
-            <th>User Details</th>
+            <th>Store Name</th>
+            <th>Store Details</th>
         </tr>
     </thead>
     <tbody>
@@ -23,20 +23,20 @@ $viewMode = (isset($_GET['viewMode'])?$_GET['viewMode']:'default');
 
 
 <!-- Submit Reciept Modal-->
-  <div class="modal fade" id="userFormModal2" tabindex="-1" role="dialog" aria-labelledby="userModalLabel2" aria-hidden="true">
+  <div class="modal fade" id="storeFormModal" tabindex="-1" role="dialog" aria-labelledby="storeModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="userModalLabel2">User Details</h5>
+          <h5 class="modal-title" id="storeModalLabel">Store Details</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <div class="modal-body">
-           <?php //include 'userForm.php';?>
+           <?php include 'storeForm.php';?>
         </div>
         <div class="modal-footer">
-          <input type="button" id="popupActionButton" class="btn btn-info" value="Add" >
+          <input type="button" id="storeFormPopupActionButton" class="btn btn-info" value="Add" >
           <button onclick="location.reload()" class="btn btn-danger" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -44,7 +44,7 @@ $viewMode = (isset($_GET['viewMode'])?$_GET['viewMode']:'default');
   </div>
 
    <!-- Page level custom scripts -->
-  <script src="js/bpos/bpos-user-datatable.js"></script>
-   <script src="js/bpos/bpos-user-form.js"></script>
+  <script src="js/bpos/bpos-store-datatable.js"></script>
+   <script src="js/bpos/bpos-store-form.js"></script>
 
   

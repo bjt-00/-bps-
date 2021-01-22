@@ -71,6 +71,7 @@
 
   <script src="js/bpos/bpos-user-form.js"></script>
   <script src="js/bpos/bpos-company-form.js"></script>
+  <script src="js/bpos/bpos-store.js"></script>
       
          <!-- datatable -->
   <script src="js/datatables/jquery.dataTables.min.js"></script>

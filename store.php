@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-$_GET['title']='User';
+$_GET['title']='Store';
 include 'view/structure/header.php'; 
 ?>
 <body id="page-top">
@@ -22,8 +22,8 @@ include 'view/structure/header.php';
 
          <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 id="pageHader" class="h3 mb-0 text-gray-800"><?php echo $companyName;?> Users</h1>
-              <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#userFormModal">
+            <h1 id="pageHader" class="h3 mb-0 text-gray-800"><?php echo $companyName;?> Stores</h1>
+              <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#storeFormModal">
                     <span class="icon text-white-50">
                       <i class="fas fa-plus"></i>
                     </span>
@@ -42,7 +42,7 @@ include 'view/structure/header.php';
             <!-- Reciept -->
             <?php 
              $_GET['viewMode']=(isset($_GET['viewMode'])?$_GET['viewMode']:'full'); 
-             include 'view/contents/user/usersList.php';
+             include 'view/contents/store/storesList.php';
             ?>
  
             
@@ -73,7 +73,7 @@ include 'view/structure/header.php';
   </a>
 
 
-    <script src="js/bpos/bpos-user.js"></script>
+    <script src="js/bpos/bpos-store.js"></script>
 </body>
 
 </html>

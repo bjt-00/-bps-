@@ -14,5 +14,20 @@ $(document).ready(function() {
 
 			},"json");
 	};
-	getStore(storeId,companyPrefix);	
+	
+	function loadStores(){
+		
+		 var url = restServicesPath+"store.php";
+		 $.get(url,{"sid":sid,"search":"*","companyPrefix":companyPrefix},
+			function(searchResult){
+				$("#userFormStoreId").empty();
+				$.each(searchResult,function(i,store){
+					var option = "<option value='"+store.storeId+"'>"+store.storeName+"</option>";
+					$("#userFormStoreId").append(option);
+				});
+
+			},"json");
+	};
+	getStore(storeId,companyPrefix);//for login form
+	loadStores();//for userForm
 } );
