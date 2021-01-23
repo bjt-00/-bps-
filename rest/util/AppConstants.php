@@ -17,6 +17,7 @@ class AppConstants{
     static $STORE_ADDRESS="storeAddress";
     static $USER_NAME="userName";
     static $USER_ROLE="role";
+    static $USER_ADMIN="admin";
     static $LOGIN_ID="loginId";
     
     static $UPLOAD_PRODUCTS_FOLDER="products";
@@ -48,6 +49,7 @@ class AppConstants{
     static $ACTION_UNLOCK="unlock";
     static $ACTION_ACTIVATE="activate";
     static $ACTION_ACTIVATED="activated";
+    static $ACTION_FORGOT_PASSWORD="forgotPassword";
     
     static $REPORT_DAILY_SUMMARY="dailySummary";
     static $REPORT_MONTHLY_SUMMARY="monthlySummary";

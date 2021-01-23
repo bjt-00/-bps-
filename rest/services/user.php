@@ -10,17 +10,25 @@ $frontController = new FrontController();
 $url = $frontController->getUrlByRole(AppConstants::$ROLE_GUEST);
 //$securityService = new SecurityService();
 if(isset($_GET[AppConstants::$COMPANY_PREFIX]) || isset($_POST[AppConstants::$COMPANY_PREFIX])){
+    
     $companyPrefix = (isset($_GET[AppConstants::$COMPANY_PREFIX])?
         $_GET[AppConstants::$COMPANY_PREFIX]:$_POST[AppConstants::$COMPANY_PREFIX]);
        $userService = new UserService();
 
         if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]!=AppConstants::$SEARCH_ALL){// && $securityService->isAuthentic()){
+           
             echo $userService->search($companyPrefix,$_GET[AppConstants::$SEARCH]);
             
         }else if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]==AppConstants::$SEARCH_ALL){
+           
             echo $userService->getUserList($companyPrefix);
+            
+        }else if(isset($_POST[AppConstants::$ACTION_FORGOT_PASSWORD])){
+            
+            $status = $userService->forgotPassword($companyPrefix,$_POST[AppConstants::$LOGIN_ID],$_POST['email']);
+            header("location:".$url);
+            
         }else if(isset($_POST[AppConstants::$ACTION])){
-            session_start();
             $response='';
             $storeId = (isset($_POST['storeId'])?$_POST['storeId']:'');
             $role = (isset($_POST['role'])?$_POST['role']:'');

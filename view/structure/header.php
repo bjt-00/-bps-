@@ -7,7 +7,8 @@ if(!strpos($requestUri,'http://www.bitguiders.com')&& !strpos($requestUri,'local
     $_SESSION['dontRedirectAgain']='yes';
 }
 
-if(!isset($_SESSION['loginId']) && (!strpos($requestUri,'login.php')&&!strpos($requestUri,'register.php'))){
+if(!isset($_SESSION['loginId']) && (!strpos($requestUri,'login.php') &&!strpos($requestUri,'register.php')
+    &&!strpos($requestUri,'forgot-password.php'))){
     header('location:login.php');
 }
 $display="style='display:none'";

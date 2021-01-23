@@ -24,7 +24,7 @@
      </div>
    </div>
     <div class="form-group">
-    	<img id="companyLogoPreview" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.jpg" width="180" height="60" alt="Company Logo" >
+    	<img id="companyLogoPreview" alt="" class="pull-center" src="img/companies/<?php echo $companyPrefix;?>/<?php echo $companyPrefix;?>.png" width="180" height="60" alt="Company Logo" >
     	<input type="file" id="companyLogo" name="companyLogo" class="form-control" >
     </div>
 

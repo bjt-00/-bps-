@@ -25,20 +25,26 @@
             return $json->jsonEncode($result);
         }
 
-        function getUserByName($companyPrefix,$productName){
+        function getUserById($companyPrefix,$loginId){
+             return $this->search($companyPrefix, $loginId);
+        }
+        function getUserCredentials($companyPrefix,$loginId,$email){
             $json = new JSONConverter();
             $dataaccess = new DataAccess();
             
-            $productName = $dataaccess->sqlInjectionFilter($productName);
+            $companyPrefix = $dataaccess->sqlInjectionFilter($companyPrefix);
+            $loginId = $dataaccess->sqlInjectionFilter($loginId);
+            $email = $dataaccess->sqlInjectionFilter($email);
             
-            $tableName = $dataaccess->getTableProduct($companyPrefix);
-            $query ="select product_id productId,product_name productName,total_in_stock totalInStock,
-             total_sold totalSold,purchase_price purchasePrice, sale_price salePrice,size
-             from ".$tableName." where product_id='".$productName
-             ."' or lower(product_name) =lower('".$productName."') limit 1";
-             //echo $query;
-             $result = $dataaccess->getResult($query);
-             return $json->jsonEncode($result);
+            $tableName = $dataaccess->getTableUser($companyPrefix);
+
+            $query ="select user_id as userId,first_name as firstName,last_name as lastName,
+             email ,u.is_active as status,u.password "
+             ." from ".$tableName." u ".
+             " where u.user_id='".$loginId."' and email='".$email."' limit 1 ";
+            //echo $query;
+            $result = $dataaccess->getResult($query);
+            return $json->jsonEncode($result);
         }
         
         function getUserList($companyPrefix,$logedinId){
