@@ -2,7 +2,7 @@
 var recieptTable;
 var balance=0;
 var totalAmount=0;
-var tax=0;
+var totalTax=0;
 var entries=0;
 var isReturnMode=false;
 $(document).ready(function() {
@@ -103,17 +103,19 @@ $(document).ready(function() {
 	   // $('#recieptTable').DataTable().search( productName ).draw();
 	    
 		
-	    //tax=totalAmount*0.01;
-	    tax=0;
 	    
-	    recieptDetails.totalAmount=(totalAmount+tax);
-	    $("#totalAmount").html(recieptDetails.totalAmount);
+	    var tax=$('#tax').val();
+	    totalTax=totalAmount*(tax/100);
+	    
+	    recieptDetails.tax=totalTax.toFixed(2);
+	    $('#totalTax').html(recieptDetails.tax);
+
+	    recieptDetails.totalAmount=totalAmount;
+	    $("#totalAmount").html((recieptDetails.totalAmount+totalTax));
 	    
 	    recieptDetails.entries=entries;
 	    $("#entries").html(recieptDetails.entries);
 	    
-	    recieptDetails.tax=tax.toFixed(2);
-	    $('#tax').html(recieptDetails.tax);
 	    
 	    $('#submitReciept').show();
 	    $('#cancelReciept').show();
@@ -128,7 +130,7 @@ $(document).ready(function() {
 		var cashRecieved = $("#cashRecieved").val();
 		recieptDetails.cashRecieved=cashRecieved;
 		
-	    balance = cashRecieved-(totalAmount+tax);
+	    balance = cashRecieved-(totalAmount+totalTax);
 	    recieptDetails.balance=balance.toFixed(2);
 	    $('#balance').html(recieptDetails.balance);
 	    

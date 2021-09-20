@@ -14,11 +14,11 @@ if(isset($_GET[AppConstants::$SEARCH]) && $_GET[AppConstants::$SEARCH]!=AppConst
     echo $storeService->getStoreList($_GET[AppConstants::$COMPANY_PREFIX]);
 }else if($_POST[AppConstants::$ACTION]==AppConstants::$ACTION_ADD){
     
-    $response=$storeService->add($_POST[AppConstants::$COMPANY_PREFIX],$_SESSION['companyId'],$_POST['storeName'],$_POST['storeAddress'],$_POST['storePhone'],AppConstants::$STATUS_ACTIVE);
+    $response=$storeService->add($_POST[AppConstants::$COMPANY_PREFIX],$_SESSION['companyId'],$_POST['storeName'],$_POST['storeAddress'],$_POST['storePhone'],$_POST['storeTax'],$_POST['storeTaxType'],AppConstants::$STATUS_ACTIVE);
     $_SESSION[AppConstants::$ALERT_TYPE_INFO]=$response;
 }else if($_POST[AppConstants::$ACTION]==AppConstants::$ACTION_UPDATE){
     
-    $response=$storeService->update($_POST[AppConstants::$COMPANY_PREFIX],$_SESSION['companyId'],$_POST['storeId'],$_POST['storeName'],$_POST['storeAddress'],$_POST['storePhone']);
+    $response=$storeService->update($_POST[AppConstants::$COMPANY_PREFIX],$_SESSION['companyId'],$_POST['storeId'],$_POST['storeName'],$_POST['storeAddress'],$_POST['storePhone'],$_POST['storeTax'],$_POST['storeTaxType']);
     $_SESSION[AppConstants::$ALERT_TYPE_INFO]=$response;
 }else if($_POST[AppConstants::$ACTION]==AppConstants::$ACTION_LOCK){
     $response=$storeService->lockStore($_POST[AppConstants::$COMPANY_PREFIX],$_POST['companyId'],$_POST['storeId']);

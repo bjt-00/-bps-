@@ -33,4 +33,12 @@ $totalSold = (isset($_GET['totalSold'])?$_GET['totalSold']:'0'); */
     </div>
 </div>
 
+<div class="form-group row">
+    <div class="col-sm-6">
+      <input type="number" id="storeTax" name="storeTax"  value="" class="form-control" placeholder="Govt applied tax" required="required" autocomplete="off">
+    </div>
+    <div class="col-sm-6">
+      <input type="text" id="storeTaxType" name="storeTaxType"  value="" class="form-control" placeholder="Tax type % etc" required="required" autocomplete="off">
+    </div>
+</div>
 </form>

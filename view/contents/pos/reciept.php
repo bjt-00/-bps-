@@ -65,7 +65,12 @@
                       	</tr>
                      	<tr>
                       		<td colspan="3">Tax</td>
-                      		<td><span id="tax" style="text-align:right;">0</span></td>
+                      		<td>
+                      		<input id="tax" type="hidden"/>
+                      		<input id="taxType" type="hidden"/>
+                      		<span id="totalTax" style="text-align:right;" >0</span>
+                      		<span id="taxInfo"></span>
+                      		</td>
                       	</tr>
                      	<tr style="border-top: 1px dashed;border-bottom:1px dashed;">
                       		<td colspan="3">Total</td>
@@ -83,12 +88,12 @@
                       	</tr>
                     	<tr>
                       		<td colspan="4">
-                      		    <input type="button" id="printReciept" class="btn btn-info" value="Print" >
-                      		    <input type="button" id="sendEmail" class="btn btn-success"  value="Email" data-toggle="modal" data-target="#sendEmailRecieptModal">
-                      			<input type="button" id="submitReciept" class="btn btn-success"  value="Submit" >
-                      			<input type="button" id="cancelReciept" onclick="location.reload()" class="btn btn-danger" value="Cancel" >
-                      			<input type="button" id="newReciept" onclick="location.reload()" class="btn btn-danger" value="New Reciept" >
-                      			<input type="button" id="deleteRecieptItem" title="Delete Selected Item" class="btn btn-danger" value="Delete" >
+                      		    <input type="button" id="printReciept" class="btn btn-info" value="Print" style="display:none">
+                      		    <input type="button" id="sendEmail" class="btn btn-success"  value="Email" data-toggle="modal" data-target="#sendEmailRecieptModal" style="display:none">
+                      			<input type="button" id="submitReciept" class="btn btn-success"  value="Submit" style="display:none">
+                      			<input type="button" id="cancelReciept" onclick="location.reload()" class="btn btn-danger" value="Cancel" style="display:none">
+                      			<input type="button" id="newReciept" onclick="location.reload()" class="btn btn-danger" value="New Reciept" style="display:none">
+                      			<input type="button" id="deleteRecieptItem" title="Delete Selected Item" class="btn btn-danger" value="Delete" style="display:none">
                       		</td>
                       	</tr>
                       </table>

@@ -40,7 +40,7 @@ $(document).ready(function(){
 	
 });
 
-function editStore(storeId,storeName,storePhone,storeAddress){
+function editStore(storeId,storeName,storePhone,storeAddress,tax,taxType){
 	$("#storeFormAction").val("Update");
 	$("#storeFormPopupActionButton").val("Update");
 	
@@ -50,6 +50,8 @@ function editStore(storeId,storeName,storePhone,storeAddress){
 	$("#storePhone").val(storePhone);
 	$("#storeFormStoreId").val(storeId);
 	$("#storeAddress").val(storeAddress);
+	$("#storeTax").val(tax);
+	$("#storeTaxType").val(taxType);
 }
 
 function lockStore(companyId,storeId,storeName){

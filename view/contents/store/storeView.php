@@ -5,6 +5,8 @@ $storeId = (isset($_GET['storeId'])?$_GET['storeId']:'000');
 $storeName = (isset($_GET['storeName'])?$_GET['storeName']:'');
 $storeAddress = (isset($_GET['storeAddress'])?$_GET['storeAddress']:'');
 $storePhone = (isset($_GET['storePhone'])?$_GET['storePhone']:'10');
+$tax = (isset($_GET['tax'])?$_GET['tax']:'-1');
+$taxType = (isset($_GET['taxType'])?$_GET['taxType']:'%');
 $managerName = (isset($_GET['managerName'])?$_GET['managerName']:'');
 $managerPhone = (isset($_GET['managerPhone'])?$_GET['managerPhone']:'');
 $managerEmail = (isset($_GET['managerEmail'])?$_GET['managerEmail']:'');
@@ -59,7 +61,8 @@ $imagePreview=(($viewMode!='full' && $viewMode!='printlabel')?"style='width:100p
                       </div>
                       
                         <?php 
-                        $csvUserParams="'".$storeId."','".$storeName."','".$storePhone."','".$storeAddress."'";
+                        $csvUserParams="'".$storeId."','".$storeName."','".$storePhone."','".$storeAddress."'"
+                        .",".$tax.",'".$taxType."'";
                         ?>
                        <div class="row">
                             <a id"store-<?php echo $storeId."-edit";?>" title="Edit" href="#" onclick="editStore(<?php echo $csvUserParams;?>)" class="editProduct btn btn-info btn-circle btn-sm" data-toggle="modal" data-target="#storeFormModal" <?php echo $fullModeControll;?>>

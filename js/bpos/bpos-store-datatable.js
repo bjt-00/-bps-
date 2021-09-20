@@ -64,11 +64,11 @@ $(document).ready(function() {
 	        }
 	    } );
 	
-	 function prepareStoreView(companyId,storeId,storeName,storeAddress,storePhone,managerName,managerPhone,managerEmail,status,emptySlotId){
+	 function prepareStoreView(companyId,storeId,storeName,storeAddress,storePhone,managerName,managerPhone,managerEmail,status,tax,taxType,emptySlotId){
 		   // $('#recieptTable').DataTable().search( userName ).draw();
 					//setProductDetails(,,,product.userEmail,discount,product.userEmail,product.role);
 		 var url = restHost+"/view/contents/store/storeView.php";
-		$.get(url,{"sid":sid,"companyId":companyId,"storeId":storeId,"storeName":storeName,"storeAddress":storeAddress,"storePhone":storePhone,"managerName":managerName,"managerPhone":managerPhone,"managerEmail":managerEmail,"status":status,"viewMode":viewMode},
+		$.get(url,{"sid":sid,"companyId":companyId,"storeId":storeId,"storeName":storeName,"storeAddress":storeAddress,"storePhone":storePhone,"managerName":managerName,"managerPhone":managerPhone,"managerEmail":managerEmail,"status":status,"viewMode":viewMode,"tax":tax,"taxType":taxType},
 			function(searchResult){
 			 $(emptySlotId).html(searchResult);
 			});//get end
@@ -107,14 +107,14 @@ $(document).ready(function() {
 					var searchContent = getSearchContent(searchResult,i);
 					var newRow = [searchContent,rowContent];
 					storeTable.row.add(newRow).draw( false );
-					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,'#store1-'+s.storeId);
+					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,s.tax,s.taxType,'#store1-'+s.storeId);
 					emptySlotId = s.storeId;
 					colIndex = colIndex+1;
 				}else if(colIndex==2){
-					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,'#store2-'+emptySlotId);
+					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,s.tax,s.taxType,'#store2-'+emptySlotId);
 					colIndex=colIndex+1;
 				}else if(colIndex==3){
-					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,'#store3-'+emptySlotId);
+					prepareStoreView(s.companyId,s.storeId,s.storeName,s.storeAddress,s.storePhone,s.managerName,s.managerPhone,s.managerEmail,s.isActive,s.tax,s.taxType,'#store3-'+emptySlotId);
 					colIndex=1;
 				}
 				

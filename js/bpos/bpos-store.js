@@ -10,6 +10,10 @@ $(document).ready(function() {
 					$("#storeId").html(store.storeId);
 					$("#storeAddress").html(store.storeAddress);
 					$("#storePhone").html(store.storePhone);
+					$("#tax").val(store.tax);
+					$("#taxType").val(store.taxType);
+					$("#taxInfo").html("("+store.tax+store.taxType+")");
+					$("#taxInfo").attr("title","Govt applied tax");
 				});
 
 			},"json");

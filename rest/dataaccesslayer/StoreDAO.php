@@ -13,9 +13,9 @@ class StoreDAO {
         $searchText = $dataaccess->sqlInjectionFilter($searchText);
         
         $tableName = $dataaccess->getTableStore($companyPrefix);
-        $query ="select store_id as storeId,store_name as storeName,store_address storeAddress,store_phone storePhone,
-         is_active isActive 
-         from ".$tableName." where store_id=".$searchText
+        $query ="select store_id as storeId,store_name as storeName,store_address storeAddress,store_phone storePhone"
+         .",tax,tax_type taxType,is_active isActive" 
+         ." from ".$tableName." where store_id=".$searchText
          ." or store_name like '%".$searchText."%' limit 1";
         
         //echo $query;
@@ -33,6 +33,7 @@ class StoreDAO {
         $tableName2= $dataaccess->getTableUser($companyPrefix);
         
         $query ="select s.company_id as companyId,s.store_id as storeId,store_name as storeName,store_address storeAddress,store_phone storePhone,s.is_active isActive"
+        .",tax,tax_type taxType"
         ." ,'Manager' as managerName,'role' as role ,'email' as managerEmail,'000' as managerPhone"
         //." ,concat(u.first_name,' ',u.last_name) managerName,u.role ,u.email managerEmail,u.phone managerPhone"
         ." from ".$tableName." s ";
@@ -44,19 +45,19 @@ class StoreDAO {
          return $json->jsonEncode($result);
     }
     
-    function add($companyPrefix,$companyId,$storeName,$storeAddress,$storePhone,$isActive){
+    function add($companyPrefix,$companyId,$storeName,$storeAddress,$storePhone,$tax,$taxType,$isActive){
         $dataaccess = new DataAccess();
         $tableName = $dataaccess->getTableStore($companyPrefix);
-        $query ="insert into ".$tableName." values(NULL, '".$companyId."', '".$storeName."', '".$storeAddress."', '".$storePhone."', '".$isActive."')";
+        $query ="insert into ".$tableName." values(NULL, '".$companyId."', '".$storeName."', '".$storeAddress."', '".$storePhone."', ".$tax.", '".$taxType."', '".$isActive."')";
         //echo $query;
         $status=$dataaccess->executeQuery($query);
         //$status .=$query;
         return $status;
     }
-    function update($companyPrefix,$companyId,$storeId,$storeName,$storeAddress,$storePhone){
+    function update($companyPrefix,$companyId,$storeId,$storeName,$storeAddress,$storePhone,$tax,$taxType){
         $dataaccess = new DataAccess();
         $tableName = $dataaccess->getTableStore($companyPrefix);
-        $query ="update ".$tableName." set store_name='".$storeName."', store_address='".$storeAddress."', store_phone='".$storePhone."'"
+        $query ="update ".$tableName." set store_name='".$storeName."', store_address='".$storeAddress."', store_phone='".$storePhone."', tax=".$tax.", tax_type='".$taxType."'"
         ." where store_id='".$storeId."' and company_id='".$companyId."' ";
         //echo $query;
         $status=$dataaccess->executeQuery($query);

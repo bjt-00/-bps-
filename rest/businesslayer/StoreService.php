@@ -13,14 +13,14 @@ class StoreService
         return $storeDAO->getStoreList($companyPrefix);
     }
     
-    function add($companyPrefix,$companyId,$storeName,$storeAddress,$storePhone,$isActive){
+    function add($companyPrefix,$companyId,$storeName,$storeAddress,$storePhone,$tax,$taxType,$isActive){
         $storeDAO = new StoreDAO();
-        return $storeDAO->add($companyPrefix,$companyId,$storeName,$storeAddress,$storePhone,$isActive);
+        return $storeDAO->add($companyPrefix,$companyId,$storeName,$storeAddress,$storePhone,$tax,$taxType,$isActive);
     }
     
-    function update($companyPrefix,$companyId,$storeId,$storeName,$storeAddress,$storePhone){
+    function update($companyPrefix,$companyId,$storeId,$storeName,$storeAddress,$storePhone,$tax,$taxType){
         $storeDAO = new StoreDAO();
-        return $storeDAO->update($companyPrefix,$companyId,$storeId,$storeName,$storeAddress,$storePhone);
+        return $storeDAO->update($companyPrefix,$companyId,$storeId,$storeName,$storeAddress,$storePhone,$tax,$taxType);
     }
     
     function lockStore($companyPrefix,$companyId,$storeId){
