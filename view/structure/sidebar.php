@@ -10,9 +10,11 @@
           <img class="BposLogo" alt="Bitguider Point of Sale" src="themes/common/images/bposLogo.png">
         </div>
       </a>
-
+      
+	  <?php $selectedMenuItemStyle="style='background: linear-gradient(to bottom, #1f3348 0%, #003366 100%);border-top:0px'";?>
+	  
       <!-- Divider -->
-      <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'dashboard.php')?"style='display:none'":'')?>
+      <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'dashboard.php')?$selectedMenuItemStyle:'')?>
       <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
 
       <!-- Nav Item - Dashboard -->
@@ -23,7 +25,7 @@
       </li>
 
       <!-- Divider -->
-      <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'pos.php')?"style='display:none'":'')?>
+      <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'pos.php')?$selectedMenuItemStyle:'')?>
       <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
 
       <!-- Nav Item - Dashboard -->
@@ -34,7 +36,7 @@
       </li>
 
      <!-- Divider -->
-     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'product.php')?"style='display:none'":'')?>
+     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'product.php')?$selectedMenuItemStyle:'')?>
       <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
 
       <!-- Nav Item - Dashboard -->
@@ -45,7 +47,7 @@
       </li>
 
      <!-- Divider -->
-     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'printlabel.php')?"style='display:none'":'')?>
+     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'printlabel.php')?$selectedMenuItemStyle:'')?>
       <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
 
       <!-- Nav Item - Dashboard -->
@@ -56,7 +58,7 @@
       </li>
 
      <!-- Divider -->
-     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'user.php')?"style='display:none'":'')?>
+     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'user.php')?$selectedMenuItemStyle:'')?>
       <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
 
       <!-- Nav Item - Dashboard -->
@@ -67,7 +69,7 @@
       </li>
 
      <!-- Divider -->
-     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'store.php')?"style='display:none'":'')?>
+     <?php $showHideItem= (strpos($_SERVER['REQUEST_URI'],'store.php')?$selectedMenuItemStyle:'')?>
       <hr class="sidebar-divider my-0" <?php echo $showHideItem?>>
 
       <!-- Nav Item - Dashboard -->
