@@ -2,6 +2,8 @@
 include 'rest/util/AppConstants.php';
 
 $sfUserRole = (isset($_SESSION[AppConstants::$USER_ROLE])?$_SESSION[AppConstants::$USER_ROLE]:AppConstants::$ROLE_GUEST);
+$sfUserName = (isset($_SESSION[AppConstants::$USER_NAME])?$_SESSION[AppConstants::$USER_NAME]:AppConstants::$ROLE_GUEST);
+
 $requestUri = $_SERVER['REQUEST_URI'];
 
 //Step-1: Protocol Filter http to https conversion

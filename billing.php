@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
-$_GET['title']='Dashboard';
+$_GET['title']='Billing';
 include 'view/structure/header.php'; 
 ?>
 <body id="page-top">
@@ -22,7 +22,7 @@ include 'view/structure/header.php';
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+            <h1 class="h3 mb-0 text-gray-800">Billing</h1>
             <!-- a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" <?php echo $display;?>><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a-->
           </div>
 		  
@@ -30,45 +30,6 @@ include 'view/structure/header.php';
           <!-- Content Row -->
           <div class="row">
 
-          <!-- Earnings (Monthly) Card Example -->
-          <?php 
-          $_GET['heading'] = 'Earnings ('.date('M-d').')';
-          $_GET['content'] = '<span id="dailySummary">0.000 PKR</span>';
-          $_GET['description'] = '<span id="dailySummaryDetails">0.000 PKR</span>';
-          $_GET['title'] = 'Todays sale';
-          $_GET['type']='primary';
-           include 'view/structure/components/boxSmall.php';
-          ?>
- 
-            <!-- Earnings (Monthly) Card Example -->
-           <?php 
-              $_GET['heading'] = 'Earnings ('.date('M-Y').')';
-              $_GET['content'] = '<span id="monthlySummary">0.000 PKR</span>';
-              $_GET['description'] = '<span id="monthlySummaryDetails">0.000 PKR</span>';
-              $_GET['title'] = 'Current month sale';
-              $_GET['type']='warning';
-              include 'view/structure/components/boxSmall.php';
-          ?>
- 
-        <!-- Earnings (Annual) Card Example -->
-           <?php 
-              $_GET['heading'] = 'Earnings ('.date('Y').')';
-              $_GET['content'] = '<span id="annualSummary">0.000 PKR</span>';
-              $_GET['description'] = '<span id="annualSummaryDetails">0.000 PKR</span>';
-              $_GET['title'] = 'Current year sale';
-              $_GET['type']='success';
-              include 'view/structure/components/boxSmall.php';
-          ?>
- 
-         <!-- Billing (Monthly) Card Example -->
-           <?php 
-           $_GET['heading'] = 'Billing ('.date('M-Y',strtotime("-1 month")).')';
-              $_GET['content'] = '<span id="billSummary">0.000 PKR</span>';
-              $_GET['description'] = '<span id="billSummaryDetails">0.000 PKR</span>';
-              $_GET['title'] = 'Current bill';
-              $_GET['type']='danger';
-              include 'view/structure/components/boxSmall.php';
-          ?>
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4" <?php echo $display;?>>
               <div class="card border-left-warning shadow h-100 py-2">
@@ -90,9 +51,8 @@ include 'view/structure/header.php';
           <!-- Content Row -->
 
           <div class="row">
-			
-			<?php include 'view/structure/components/chart.php';?>
-			<?php include 'view/structure/components/pieChart.php';?>
+			<?php include 'view/contents/billing/billView.php';?>
+			<?php include 'view/contents/billing/billHistory.php';?>
           </div>
 
           <!-- Content Row -->
@@ -271,7 +231,6 @@ include 'view/structure/header.php';
   </div>
 
 
-  <script src="js/bpos/bpos-dashboard.js"></script>
   <script src="js/bpos/billing/bpos-billing.js"></script>
 </body>
 

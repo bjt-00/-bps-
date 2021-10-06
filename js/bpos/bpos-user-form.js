@@ -59,6 +59,10 @@ function editUser(loginId,firstName,lastName,role,storeId,email,status,phone){
 	$("#email").val(email);
 	$("#phone").val(phone);
 	$("#password").val("");
+	if(role=='Sales Person'){
+		$("#role").hide();
+		$("#userFormStoreId").attr("readonly","true");
+	}
 	$("#userImagePreview").attr("src","img/companies/"+companyPrefix+"/users/"+loginId+".png");
 }
 

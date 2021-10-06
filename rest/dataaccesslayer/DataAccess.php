@@ -1,11 +1,12 @@
  <?php 
  class DataAccess{
+
      
-     	
-   	public $host = "localhost";
-   	public $user ="root";
-   	public $password  ="";
-   	public $db   ="bpos";
+      public $host = "localhost";
+      public $user ="root";
+      public $password  ="";
+      public $db   ="bpos";
+      
  
 
 
@@ -79,7 +80,9 @@
    function getTableStore($companyPrefix){
        return $this->formatTableName($companyPrefix, AppConstants::$TABLE_STORE);
    }
-
+   function getTableBill($companyPrefix){
+       return $this->formatTableName($companyPrefix, AppConstants::$TABLE_BILL);
+   }
    function getTableCompany(){
        return AppConstants::$TABLE_COMPANY;
    }
@@ -96,7 +99,9 @@
        $clientTables=array(AppConstants::$TABLE_USER,AppConstants::$TABLE_PRODUCT,
        AppConstants::$TABLE_SALE_TRANSACTION,
        AppConstants::$TABLE_SALE_TRANSACTION_DETAIL,
-       AppConstants::$TABLE_STORE);
+       AppConstants::$TABLE_STORE,
+       AppConstants::$TABLE_BILL
+       );
        return $clientTables;
    }
  }

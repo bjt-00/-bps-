@@ -22,7 +22,9 @@ class AppConstants{
     
     static $UPLOAD_PRODUCTS_FOLDER="products";
     static $UPLOAD_USERS_FOLDER="users";
+    static $UPLOAD_RECIEPTS_FOLDER="payment-reciepts";
     static $UPLOAD_COMPANY_LOGO="companyLogo";
+    static $UPLOAD_PAYMENT_RECIEPT="paymentReciept";
     
     static $ALERT_TYPE_SUCCESS="success";
     static $ALERT_TYPE_INFO="info";
@@ -35,6 +37,7 @@ class AppConstants{
     static $TABLE_SALE_TRANSACTION_DETAIL="sale_transaction_detail";
     static $TABLE_STORE="store";
     static $TABLE_COMPANY="company";
+    static $TABLE_BILL="bill";
     
     static $SEARCH="search";
     static $SEARCH_ALL="*";
@@ -55,6 +58,9 @@ class AppConstants{
     static $REPORT_MONTHLY_SUMMARY="monthlySummary";
     static $REPORT_ANNUAL_SUMMARY="annualSummary";
     static $REPORT_ANNUAL_SUMMARY_BY_MONTH="annualSummaryByMonth";
+
+    static $BILL_SUMMARY="billSummary";
+    static $BILL_DUE="dueBills";
     
     static $STATUS_ACTIVE=1;
     static $STATUS_INACTIVE=0;
